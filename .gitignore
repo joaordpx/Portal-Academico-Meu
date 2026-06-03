@@ -1,0 +1,32 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependências
+node_modules/
+
+# Pasta de build/produção do Vite
+dist/
+dist-ssr/
+
+# Arquivos de testes e relatórios de erro
+coverage/
+
+# Arquivos de ambiente (Senhas e segredos)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos de cache do editor de código e do sistema
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?n
