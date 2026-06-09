@@ -2,8 +2,8 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { ArrowUpRight, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
-import { PageHeader } from "../components/PageHeader";
-import { Reveal } from "../components/Reveal";
+import { PageHeader } from "../components/layout/PageHeader";
+import { Reveal } from "../components/shared/Reveal";
 
 const courses = [
   { slug: "direito", nome: "Direito", grau: "Bacharelado", campus: "Montes Claros", centro: "CCSA", turno: "Noturno", area: "Sociais Aplicadas" },
@@ -71,9 +71,8 @@ export function Cursos() {
                       <button
                         key={o}
                         onClick={() => f.set(o)}
-                        className={`text-left text-[13px] transition-colors ${
-                          f.value === o ? "font-bold text-[#6E3AFF]" : "text-[#1a1a1a]/60 hover:text-[#1a1a1a]"
-                        }`}
+                        className={`text-left text-[13px] transition-colors ${f.value === o ? "font-bold text-[#6E3AFF]" : "text-[#1a1a1a]/60 hover:text-[#1a1a1a]"
+                          }`}
                       >
                         {o}
                       </button>
@@ -112,9 +111,8 @@ export function Cursos() {
                   <motion.div whileHover={{ y: -2 }} className="h-full">
                     <Link
                       to={`/cursos/${c.slug}`}
-                      className={`group flex h-full flex-col justify-between gap-6 border-b border-[#e5e5e5] p-7 transition-colors hover:bg-[#fafafa] ${
-                        i % 2 === 0 ? "sm:border-r" : ""
-                      }`}
+                      className={`group flex h-full flex-col justify-between gap-6 border-b border-[#e5e5e5] p-7 transition-colors hover:bg-[#fafafa] ${i % 2 === 0 ? "sm:border-r" : ""
+                        }`}
                     >
                       <div>
                         <div className="flex items-center justify-between">

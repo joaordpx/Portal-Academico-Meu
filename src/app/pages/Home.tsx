@@ -17,8 +17,8 @@ import {
   HelpCircle,
   Compass,
 } from "lucide-react";
-import { Reveal } from "../components/Reveal";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { Reveal } from "../components/shared/Reveal";
+import { ImageWithFallback } from "../components/shared/ImageWithFallback";
 
 export function Home() {
   return (
@@ -151,9 +151,8 @@ function HeroIntro() {
             <Link
               key={c.no}
               to={c.to}
-              className={`group grid grid-cols-1 items-stretch transition-colors hover:bg-[#fafafa] sm:grid-cols-[1fr_180px] ${
-                i === 0 ? "border-b border-[#e5e5e5] md:border-b-0 md:border-r" : ""
-              }`}
+              className={`group grid grid-cols-1 items-stretch transition-colors hover:bg-[#fafafa] sm:grid-cols-[1fr_180px] ${i === 0 ? "border-b border-[#e5e5e5] md:border-b-0 md:border-r" : ""
+                }`}
             >
               <div className="flex flex-col justify-between gap-6 p-8 lg:p-10">
                 <div

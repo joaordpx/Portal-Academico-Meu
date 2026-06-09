@@ -2,7 +2,7 @@ import { useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import { Reveal } from "./Reveal";
+import { Reveal } from "../shared/Reveal";
 
 type Section = {
   id: string;
@@ -90,11 +90,10 @@ export function SectionLayout({
                   <button
                     key={s.id}
                     onClick={() => setActive(s.id)}
-                    className={`group flex items-center justify-between border-b border-[#e5e5e5] py-3.5 text-left text-[13px] transition-colors ${
-                      active === s.id
+                    className={`group flex items-center justify-between border-b border-[#e5e5e5] py-3.5 text-left text-[13px] transition-colors ${active === s.id
                         ? "font-bold text-[#1a1a1a]"
                         : "font-medium text-[#1a1a1a]/55 hover:text-[#1a1a1a]"
-                    }`}
+                      }`}
                   >
                     <span>{s.label}</span>
                     {active === s.id && (
@@ -175,9 +174,8 @@ export function PanelCardGrid({
           <a
             key={c.title}
             href={c.href ?? "#"}
-            className={`group flex flex-col justify-between gap-6 border-b border-[#e5e5e5] p-7 transition-colors hover:bg-[#fafafa] ${
-              i % 2 === 0 ? "sm:border-r" : ""
-            }`}
+            className={`group flex flex-col justify-between gap-6 border-b border-[#e5e5e5] p-7 transition-colors hover:bg-[#fafafa] ${i % 2 === 0 ? "sm:border-r" : ""
+              }`}
           >
             <div>
               <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">

@@ -2,7 +2,7 @@ import { Outlet, useLocation, ScrollRestoration } from "react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { Toaster } from "./ui/sonner";
+import { Toaster } from "../ui/sonner";
 
 export function Layout() {
   const location = useLocation();

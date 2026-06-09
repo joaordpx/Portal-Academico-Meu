@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MapPin, Building2, FlaskConical, BookMarked, Utensils, Clock, ArrowUpRight } from "lucide-react";
-import { PageHeader } from "../components/PageHeader";
-import { Reveal } from "../components/Reveal";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { PageHeader } from "../components/layout/PageHeader";
+import { Reveal } from "../components/shared/Reveal";
+import { ImageWithFallback } from "../components/shared/ImageWithFallback";
 
 const TABS = ["Campus Montes Claros", "Demais Unidades", "Organograma"] as const;
 type Tab = typeof TABS[number];
@@ -57,9 +57,8 @@ export function UnidadesLocalizacao() {
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={`relative whitespace-nowrap py-4 text-[12px] font-bold uppercase tracking-[0.14em] transition-colors ${
-                tab === t ? "text-[#1a1a1a]" : "text-[#1a1a1a]/45 hover:text-[#1a1a1a]"
-              }`}
+              className={`relative whitespace-nowrap py-4 text-[12px] font-bold uppercase tracking-[0.14em] transition-colors ${tab === t ? "text-[#1a1a1a]" : "text-[#1a1a1a]/45 hover:text-[#1a1a1a]"
+                }`}
             >
               {t}
               {tab === t && (

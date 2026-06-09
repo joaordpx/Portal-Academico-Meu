@@ -1,6 +1,6 @@
 import { ArrowUpRight, FileText } from "lucide-react";
-import { PageHeader } from "../components/PageHeader";
-import { SectionLayout, PanelCardGrid } from "../components/SectionLayout";
+import { PageHeader } from "../components/layout/PageHeader";
+import { SectionLayout, PanelCardGrid } from "../components/layout/SectionLayout";
 
 const popular = [
   { label: "WebGiz" },
@@ -39,9 +39,8 @@ const sections = [
             <a
               key={c.t}
               href="#"
-              className={`group flex flex-col justify-between gap-6 border-b border-[#e5e5e5] p-7 transition-colors hover:bg-[#fafafa] ${
-                i % 2 === 0 ? "sm:border-r" : ""
-              }`}
+              className={`group flex flex-col justify-between gap-6 border-b border-[#e5e5e5] p-7 transition-colors hover:bg-[#fafafa] ${i % 2 === 0 ? "sm:border-r" : ""
+                }`}
             >
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">

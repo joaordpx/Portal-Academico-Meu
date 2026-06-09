@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowUpRight, CalendarHeart, MapPin, Clock, Search } from "lucide-react";
-import { PageHeader } from "../components/PageHeader";
-import { Reveal } from "../components/Reveal";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { PageHeader } from "../components/layout/PageHeader";
+import { Reveal } from "../components/shared/Reveal";
+import { ImageWithFallback } from "../components/shared/ImageWithFallback";
 
 type Tipo = "Cultural" | "Acadêmico" | "Comunitário";
 
@@ -54,11 +54,10 @@ export function Eventos() {
                 <button
                   key={t}
                   onClick={() => setTipo(t)}
-                  className={`rounded-[3px] border px-4 py-2 text-[12px] font-bold uppercase tracking-[0.14em] transition-colors ${
-                    tipo === t
-                      ? "border-[#1a1a1a] bg-[#1a1a1a] text-white"
-                      : "border-[#e5e5e5] bg-white text-[#1a1a1a]/65 hover:border-[#1a1a1a] hover:text-[#1a1a1a]"
-                  }`}
+                  className={`rounded-[3px] border px-4 py-2 text-[12px] font-bold uppercase tracking-[0.14em] transition-colors ${tipo === t
+                    ? "border-[#1a1a1a] bg-[#1a1a1a] text-white"
+                    : "border-[#e5e5e5] bg-white text-[#1a1a1a]/65 hover:border-[#1a1a1a] hover:text-[#1a1a1a]"
+                    }`}
                 >
                   {t}
                 </button>

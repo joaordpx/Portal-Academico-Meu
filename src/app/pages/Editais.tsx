@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowUpRight, ClipboardList, ChevronLeft, ChevronRight } from "lucide-react";
-import { PageHeader } from "../components/PageHeader";
-import { Reveal } from "../components/Reveal";
+import { PageHeader } from "../components/layout/PageHeader";
+import { Reveal } from "../components/shared/Reveal";
 
 type Status = "Aberto" | "Encerrado";
 type Tipo = "Edital" | "Estágio" | "Bolsa" | "Pesquisa" | "Extensão";
@@ -55,11 +55,10 @@ export function Editais() {
                     <button
                       key={t}
                       onClick={() => setStatus(t)}
-                      className={`rounded-[3px] border px-3.5 py-1.5 text-[12px] font-semibold transition-colors ${
-                        status === t
-                          ? "border-[#1a1a1a] bg-[#1a1a1a] text-white"
-                          : "border-[#e5e5e5] bg-white text-[#1a1a1a]/65 hover:border-[#1a1a1a] hover:text-[#1a1a1a]"
-                      }`}
+                      className={`rounded-[3px] border px-3.5 py-1.5 text-[12px] font-semibold transition-colors ${status === t
+                        ? "border-[#1a1a1a] bg-[#1a1a1a] text-white"
+                        : "border-[#e5e5e5] bg-white text-[#1a1a1a]/65 hover:border-[#1a1a1a] hover:text-[#1a1a1a]"
+                        }`}
                     >
                       {t}
                     </button>
@@ -76,11 +75,10 @@ export function Editais() {
                     <button
                       key={t}
                       onClick={() => setTipo(t)}
-                      className={`rounded-[3px] border px-3.5 py-1.5 text-[12px] font-semibold transition-colors ${
-                        tipo === t
-                          ? "border-[#6E3AFF] bg-[#6E3AFF] text-white"
-                          : "border-[#e5e5e5] bg-white text-[#1a1a1a]/65 hover:border-[#1a1a1a] hover:text-[#1a1a1a]"
-                      }`}
+                      className={`rounded-[3px] border px-3.5 py-1.5 text-[12px] font-semibold transition-colors ${tipo === t
+                        ? "border-[#6E3AFF] bg-[#6E3AFF] text-white"
+                        : "border-[#e5e5e5] bg-white text-[#1a1a1a]/65 hover:border-[#1a1a1a] hover:text-[#1a1a1a]"
+                        }`}
                     >
                       {t}
                     </button>
@@ -107,9 +105,8 @@ export function Editais() {
                 >
                   <div className="col-span-12 lg:col-span-2">
                     <span
-                      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white ${
-                        e.status === "Aberto" ? "bg-[#00B894]" : "bg-[#1a1a1a]/50"
-                      }`}
+                      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white ${e.status === "Aberto" ? "bg-[#00B894]" : "bg-[#1a1a1a]/50"
+                        }`}
                     >
                       <span className="h-1 w-1 rounded-full bg-white" />
                       {e.status}

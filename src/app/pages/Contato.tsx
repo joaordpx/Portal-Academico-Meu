@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Phone, Mail, MapPin, Send, MessageCircle, Loader2 } from "lucide-react";
-import { PageHeader } from "../components/PageHeader";
-import { Reveal } from "../components/Reveal";
+import { PageHeader } from "../components/layout/PageHeader";
+import { Reveal } from "../components/shared/Reveal";
 import { toast } from "sonner";
 
 export function Contato() {
