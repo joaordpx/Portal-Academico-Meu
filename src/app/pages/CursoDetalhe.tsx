@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link, useParams } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronRight, Home, CheckCircle2 } from "lucide-react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { Reveal } from "../components/Reveal";
+import { ImageWithFallback } from "../components/shared/ImageWithFallback";
+import { Reveal } from "../components/shared/Reveal";
 
 const TABS = [
   { id: "sobre", label: "Sobre o Curso" },
@@ -78,9 +78,8 @@ export function CursoDetalhe() {
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
-              className={`relative whitespace-nowrap py-4 text-[12px] font-bold uppercase tracking-[0.14em] transition-colors ${
-                tab === t.id ? "text-[#1a1a1a]" : "text-[#1a1a1a]/45 hover:text-[#1a1a1a]"
-              }`}
+              className={`relative whitespace-nowrap py-4 text-[12px] font-bold uppercase tracking-[0.14em] transition-colors ${tab === t.id ? "text-[#1a1a1a]" : "text-[#1a1a1a]/45 hover:text-[#1a1a1a]"
+                }`}
             >
               {t.label}
               {tab === t.id && (

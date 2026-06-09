@@ -1,6 +1,6 @@
 import { GraduationCap } from "lucide-react";
-import { PageHeader } from "../components/PageHeader";
-import { SectionLayout, PanelCardGrid } from "../components/SectionLayout";
+import { PageHeader } from "../components/layout/PageHeader";
+import { SectionLayout, PanelCardGrid } from "../components/layout/SectionLayout";
 
 const popular = [
   { label: "Calendário Acadêmico" },
