@@ -28,3 +28,9 @@ export interface Noticia {
     desc: string;
     date: string;
 }
+
+export interface DestaqueHero {
+    texto: string;
+    corFundo: string;
+    ativo
+}
