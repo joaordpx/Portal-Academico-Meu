@@ -80,7 +80,7 @@ export function Footer() {
           <div className="lg:col-span-5">
             <ul className="grid grid-cols-1 gap-x-8 gap-y-3 text-[13px] sm:grid-cols-2">
               {[
-                { icon: Clock, k: "Atendimento", v: "Seg–sex · 9h às 17h" },
+                { icon: Clock, k: "Atendimento", v: "Seg–sex · 08h às 17h" },
                 { icon: MessageCircle, k: "WhatsApp", v: "(31) 3915-0500" },
                 { icon: Phone, k: "Disque-Ouvidoria", v: "162" },
                 { icon: Shield, k: "Disque-Saúde", v: "136" },
