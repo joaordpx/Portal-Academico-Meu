@@ -48,29 +48,39 @@ const IMG = {
 };
 
 const courses: Curso[] = [
-  { slug: "sistemas-de-informacao", nome: "Sistemas de Informação", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCET", turno: "Noturno", area: "Exatas", duracao: 8, imagem: IMG.ti },
-  { slug: "cinema-e-audiovisual", nome: "Cinema e Audiovisual", grau: "Licenciatura", modalidade: "Presencial", campus: "Montes Claros", centro: "CCH", turno: "Noturno", area: "Artes", duracao: 8, imagem: IMG.cinema },
-  { slug: "agronomia", nome: "Agronomia", grau: "Especialização", modalidade: "EAD", campus: "Januária", centro: "CCBS", turno: "Integral", area: "Agrárias", duracao: 10, imagem: IMG.agro },
-  { slug: "psicologia", nome: "Psicologia", grau: "Bacharelado", modalidade: "Híbrido", campus: "Montes Claros", centro: "CCBS", turno: "Matutino", area: "Saúde", duracao: 10, imagem: IMG.saude },
-  { slug: "ciencias-contabeis", nome: "Ciências Contábeis", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCSA", turno: "Noturno", area: "Sociais Aplicadas", duracao: 8, imagem: IMG.gestao },
-  { slug: "direito", nome: "Direito", grau: "Técnico", modalidade: "Presencial", campus: "Montes Claros", centro: "CCSA", turno: "Noturno", area: "Sociais Aplicadas", duracao: 8, imagem: IMG.direito },
-  { slug: "medicina", nome: "Medicina", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCBS", turno: "Integral", area: "Saúde", duracao: 12, imagem: IMG.saude },
-  { slug: "administracao", nome: "Administração", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCSA", turno: "Integral", area: "Sociais Aplicadas", duracao: 8, imagem: IMG.gestao },
-  { slug: "engenharia-civil", nome: "Engenharia Civil", grau: "Tecnólogo", modalidade: "Presencial", campus: "Montes Claros", centro: "CCET", turno: "Integral", area: "Exatas", duracao: 8, imagem: IMG.engenharia },
-  { slug: "geografia", nome: "Geografia", grau: "Bacharelado", modalidade: "Presencial", campus: "São Francisco", centro: "CCH", turno: "Noturno", area: "Humanas", duracao: 8, imagem: IMG.geografia },
-  { slug: "pedagogia", nome: "Pedagogia", grau: "Licenciatura", modalidade: "Presencial", campus: "Montes Claros", centro: "CCH", turno: "Noturno", area: "Educação", duracao: 8, imagem: IMG.educacao },
-  { slug: "enfermagem", nome: "Enfermagem", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCBS", turno: "Integral", area: "Saúde", duracao: 10, imagem: IMG.saude },
-  { slug: "historia", nome: "História", grau: "Licenciatura", modalidade: "Presencial", campus: "Montes Claros", centro: "CCH", turno: "Noturno", area: "Humanas", duracao: 8, imagem: IMG.educacao },
-  { slug: "engenharia-agricola", nome: "Engenharia Agrícola e Ambiental", grau: "Bacharelado", modalidade: "Presencial", campus: "Januária", centro: "CCET", turno: "Integral", area: "Exatas", duracao: 10, imagem: IMG.engenharia },
-  { slug: "ciencias-biologicas", nome: "Ciências Biológicas", grau: "Licenciatura", modalidade: "Presencial", campus: "Montes Claros", centro: "CCBS", turno: "Vespertino", area: "Saúde", duracao: 8, imagem: IMG.agro },
-  { slug: "matematica", nome: "Matemática", grau: "Licenciatura", modalidade: "EAD", campus: "São Francisco", centro: "CCET", turno: "Noturno", area: "Exatas", duracao: 8, imagem: IMG.ti },
+  { slug: "sistemas-de-informacao", nome: "Sistemas de Informação", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCET", turno: "Noturno", area: "Exatas e da Terra", duracao: 8, imagem: IMG.ti },
+  { slug: "cinema-e-audiovisual", nome: "Cinema e Audiovisual", grau: "Licenciatura", modalidade: "Presencial", campus: "Montes Claros", centro: "CCH", turno: "Noturno", area: "Linguística, Letras e Artes", duracao: 8, imagem: IMG.cinema },
+  { slug: "agronomia", nome: "Agronomia", grau: "Especialização", modalidade: "EAD", campus: "Januária", centro: "CCBS", turno: "Integral", area: "Ciências Agrárias", duracao: 10, imagem: IMG.agro },
+  { slug: "psicologia", nome: "Psicologia", grau: "Bacharelado", modalidade: "Híbrido", campus: "Montes Claros", centro: "CCBS", turno: "Matutino", area: "Ciências da Saúde", duracao: 10, imagem: IMG.saude },
+  { slug: "ciencias-contabeis", nome: "Ciências Contábeis", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCSA", turno: "Noturno", area: "Ciências Sociais e Aplicadas", duracao: 8, imagem: IMG.gestao },
+  { slug: "direito", nome: "Direito", grau: "Técnico", modalidade: "Presencial", campus: "Montes Claros", centro: "CCSA", turno: "Noturno", area: "Ciências Sociais e Aplicadas", duracao: 8, imagem: IMG.direito },
+  { slug: "medicina", nome: "Medicina", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCBS", turno: "Integral", area: "Ciências da Saúde", duracao: 12, imagem: IMG.saude },
+  { slug: "administracao", nome: "Administração", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCSA", turno: "Integral", area: "Ciências Sociais e Aplicadas", duracao: 8, imagem: IMG.gestao },
+  { slug: "engenharia-civil", nome: "Engenharia Civil", grau: "Tecnólogo", modalidade: "Presencial", campus: "Montes Claros", centro: "CCET", turno: "Integral", area: "Engenharias", duracao: 8, imagem: IMG.engenharia },
+  { slug: "geografia", nome: "Geografia", grau: "Bacharelado", modalidade: "Presencial", campus: "São Francisco", centro: "CCH", turno: "Noturno", area: "Ciências Humanas", duracao: 8, imagem: IMG.geografia },
+  { slug: "pedagogia", nome: "Pedagogia", grau: "Licenciatura", modalidade: "Presencial", campus: "Montes Claros", centro: "CCH", turno: "Noturno", area: "Ciências Humanas", duracao: 8, imagem: IMG.educacao },
+  { slug: "enfermagem", nome: "Enfermagem", grau: "Bacharelado", modalidade: "Presencial", campus: "Montes Claros", centro: "CCBS", turno: "Integral", area: "Ciências da Saúde", duracao: 10, imagem: IMG.saude },
+  { slug: "historia", nome: "História", grau: "Licenciatura", modalidade: "Presencial", campus: "Montes Claros", centro: "CCH", turno: "Noturno", area: "Ciências Humanas", duracao: 8, imagem: IMG.educacao },
+  { slug: "engenharia-agricola", nome: "Engenharia Agrícola e Ambiental", grau: "Bacharelado", modalidade: "Presencial", campus: "Januária", centro: "CCET", turno: "Integral", area: "Engenharias", duracao: 10, imagem: IMG.engenharia },
+  { slug: "ciencias-biologicas", nome: "Ciências Biológicas", grau: "Licenciatura", modalidade: "Presencial", campus: "Montes Claros", centro: "CCBS", turno: "Vespertino", area: "Ciências Biológicas", duracao: 8, imagem: IMG.agro },
+  { slug: "matematica", nome: "Matemática", grau: "Licenciatura", modalidade: "EAD", campus: "São Francisco", centro: "CCET", turno: "Noturno", area: "Exatas e da Terra", duracao: 8, imagem: IMG.ti },
 ];
 
 const filters = {
   centro: ["Todos", "CCET", "CCSA", "CCBS", "CCH"],
   turno: ["Todos", "Integral", "Matutino", "Vespertino", "Noturno"],
   grau: ["Todos", "Bacharelado", "Licenciatura", "Técnico", "Tecnólogo", "Especialização"],
-  modalidade: ["Todos", "Presencial", "EAD", "Híbrido"],
+  area: [
+    "Todas",
+    "Ciências Agrárias",
+    "Ciências Biológicas",
+    "Ciências Sociais e Aplicadas",
+    "Exatas e da Terra",
+    "Ciências Humanas",
+    "Ciências da Saúde",
+    "Engenharias",
+    "Linguística, Letras e Artes",
+  ],
 };
 
 const sortOptions = [
@@ -111,14 +121,16 @@ export function Cursos() {
   const [centro, setCentro] = useState("Todos");
   const [turno, setTurno] = useState("Todos");
   const [grau, setGrau] = useState("Todos");
-  const [modalidade, setModalidade] = useState("Todos");
+  const [area, setArea] = useState("Todas");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SortId>("alfabetica");
   const [view, setView] = useState<"grid" | "list">("grid");
   const [showFilters, setShowFilters] = useState(false);
   const [page, setPage] = useState(1);
 
-  const activeFilters = [centro, turno, grau, modalidade].filter((f) => f !== "Todos").length;
+  const activeFilters = [centro, turno, grau, area].filter(
+    (f) => f !== "Todos" && f !== "Todas",
+  ).length;
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -127,7 +139,7 @@ export function Cursos() {
         (centro === "Todos" || c.centro === centro) &&
         (turno === "Todos" || c.turno === turno) &&
         (grau === "Todos" || c.grau === grau) &&
-        (modalidade === "Todos" || c.modalidade === modalidade) &&
+        (area === "Todas" || c.area === area) &&
         (q === "" || c.nome.toLowerCase().includes(q) || c.area.toLowerCase().includes(q)),
     );
 
@@ -136,7 +148,7 @@ export function Cursos() {
       if (sort === "duracao-desc") return b.duracao - a.duracao;
       return a.nome.localeCompare(b.nome, "pt-BR");
     });
-  }, [centro, turno, grau, modalidade, query, sort]);
+  }, [centro, turno, grau, area, query, sort]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
@@ -152,7 +164,7 @@ export function Cursos() {
     setCentro("Todos");
     setTurno("Todos");
     setGrau("Todos");
-    setModalidade("Todos");
+    setArea("Todas");
     setQuery("");
     setPage(1);
   }
@@ -233,7 +245,7 @@ export function Cursos() {
                     { label: "Centro de Ensino", value: centro, set: setCentro, opts: filters.centro },
                     { label: "Turno", value: turno, set: setTurno, opts: filters.turno },
                     { label: "Grau", value: grau, set: setGrau, opts: filters.grau },
-                    { label: "Modalidade", value: modalidade, set: setModalidade, opts: filters.modalidade },
+                    { label: "Área do Conhecimento", value: area, set: setArea, opts: filters.area },
                   ].map((f) => (
                     <div key={f.label}>
                       <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/70">
@@ -314,7 +326,7 @@ export function Cursos() {
               </button>
             </div>
           ) : view === "grid" ? (
-            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {paginated.map((c, i) => (
                 <Reveal key={c.slug} delay={(i % 4) * 0.05}>
                   <motion.div whileHover={{ y: -4 }} className="h-full">

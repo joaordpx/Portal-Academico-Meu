@@ -15,7 +15,7 @@ export function PageHeader({
 }) {
   return (
     <section className="border-b border-[#e5e5e5] bg-white">
-      <div className="mx-auto max-w-[1400px] px-6 py-14 lg:px-12 lg:py-24">
+      <div className="mx-auto max-w-[1400px] px-6 pb-14 pt-8 lg:px-12 lg:pb-24 lg:pt-12">
         <nav className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1a1a1a]/50">
           <Link to="/" className="flex items-center gap-1.5 transition-colors hover:text-[#6E3AFF]">
             <Home className="h-3 w-3" /> Início
