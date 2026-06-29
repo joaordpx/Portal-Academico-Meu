@@ -47,7 +47,7 @@ export function SectionLayout({
 
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="mt-10 flex items-center rounded-[4px] border border-[#e5e5e5] bg-white focus-within:border-[#6E3AFF]"
+            className="mt-10 flex items-center rounded-[4px] border border-[#e5e5e5] bg-white focus-within:border-[#6E3AFF] cursor: cursor-pointer"
           >
             <input
               type="text"
@@ -91,8 +91,8 @@ export function SectionLayout({
                     key={s.id}
                     onClick={() => setActive(s.id)}
                     className={`group flex items-center justify-between border-b border-[#e5e5e5] py-3.5 text-left text-[13px] transition-colors ${active === s.id
-                        ? "font-bold text-[#1a1a1a]"
-                        : "font-medium text-[#1a1a1a]/55 hover:text-[#1a1a1a]"
+                      ? "font-bold text-[#1a1a1a]"
+                      : "font-medium text-[#1a1a1a]/55 hover:text-[#1a1a1a]"
                       }`}
                   >
                     <span>{s.label}</span>

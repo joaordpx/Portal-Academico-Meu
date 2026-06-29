@@ -1,5 +1,5 @@
 import { fetchApi } from './api';
-import { Comunicado, Oportunidade, Noticia } from '../types';
+import { Comunicado, Oportunidade, Noticia, DestaqueHero } from '../types';
 
 export async function getComunicados(): Promise<Comunicado[]> {
     // return fetchApi<Comunicado[]>('/comunicados');
@@ -52,4 +52,12 @@ export async function getNoticias(): Promise<Noticia[]> {
         { id: 2, cat: "Serviços", catColor: "#FF4D2E", bg: "#FFE3DA", img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900", title: "Novo aplicativo mobile facilita acesso ao cardápio do RU", desc: "Sistema permite consultar cardápio semanal, horários e saldo de refeições direto do celular.", date: "18/05/2026" },
         { id: 3, cat: "Pesquisa", catColor: "#00B894", bg: "#D9F5EC", img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900", title: "Pesquisa sobre plantas do cerrado é destaque nacional", desc: "Estudo coordenado por professores e estudantes de Biologia recebe prêmio da SBPC.", date: "15/05/2026" },
     ];
+}
+
+export async function getDestaqueHero(): Promise<DestaqueHero | null> {
+    return {
+        texto: "Matrículas abertas",
+        corFundo: "#FF4D2E",
+        ativo: true,
+    };
 }

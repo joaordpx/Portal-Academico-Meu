@@ -22,27 +22,30 @@ import { Reveal } from "../components/shared/Reveal";
 import { ImageWithFallback } from "../components/shared/ImageWithFallback";
 
 // Importando Tipos e Serviços
-import { Comunicado, Oportunidade, Noticia } from "../../types";
-import { getComunicados, getOportunidades, getNoticias } from "../../services/homeService";
+import { Comunicado, Oportunidade, Noticia, DestaqueHero } from "../../types";
+import { getComunicados, getOportunidades, getNoticias, getDestaqueHero } from "../../services/homeService";
 
 export function Home() {
   const [comunicados, setComunicados] = useState<Comunicado[]>([]);
   const [oportunidades, setOportunidades] = useState<Oportunidade[]>([]);
   const [noticias, setNoticias] = useState<Noticia[]>([]);
   const [loading, setLoading] = useState(true);
+  const [destaque, setDestaque] = useState<DestaqueHero | null>(null);
 
   useEffect(() => {
     async function carregarDados() {
       try {
-        const [comunicadosData, opData, noticiasData] = await Promise.all([
+        const [comunicadosData, opData, noticiasData, destaqueData] = await Promise.all([
           getComunicados(),
           getOportunidades(),
-          getNoticias()
+          getNoticias(),
+          getDestaqueHero()
         ]);
 
         setComunicados(comunicadosData);
         setOportunidades(opData);
         setNoticias(noticiasData);
+        setDestaque(destaqueData);
       } catch (error) {
         console.error("Erro ao carregar dados:", error);
       } finally {
@@ -55,7 +58,8 @@ export function Home() {
 
   return (
     <>
-      <HeroIntro />
+      {/* Passando a variável de destaque para o componente */}
+      <HeroIntro destaque={destaque} />
       <AtalhosRapidos />
 
       {loading ? (
@@ -77,7 +81,7 @@ export function Home() {
 /* ──────────────────────────────────────────────────────────────
    HERO E ATALHOS (Estáticos)
    ────────────────────────────────────────────────────────────── */
-function HeroIntro() {
+function HeroIntro({ destaque }: { destaque: DestaqueHero | null }) {
   return (
     <section className="relative overflow-hidden bg-white">
       <div
@@ -143,16 +147,25 @@ function HeroIntro() {
                 aria-hidden
                 className="absolute -right-3 -top-3 hidden h-full w-full rounded-[4px] bg-[#FFB800] lg:block"
               />
+
+              {/* DIV DE IMAGEM INSERIDA AQUI NO LOCAL CORRETO */}
               <div className="relative overflow-hidden rounded-[4px] border border-[#1a1a1a]">
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1607013407627-6ee814329547?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
                   alt="Estudantes da Unimontes"
                   className="aspect-[4/5] w-full object-cover"
                 />
-                <div className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-[#FF4D2E] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
-                  <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                  Matrículas abertas
-                </div>
+
+                {/* AQUI ESTÁ A MÁGICA: Só renderiza se estiver ativo e usa a cor/texto do backend */}
+                {destaque?.ativo && (
+                  <div
+                    className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white"
+                    style={{ backgroundColor: destaque.corFundo }}
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                    {destaque.texto}
+                  </div>
+                )}
               </div>
             </motion.div>
           </div>
