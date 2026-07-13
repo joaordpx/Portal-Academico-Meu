@@ -1,6 +1,6 @@
 import { GraduationCap } from "lucide-react";
 import { PageHeader } from "../components/layout/PageHeader";
-import { SectionLayout, PanelCardGrid, PanelRedirect, PanelSteps } from "../components/layout/SectionLayout";
+import { SectionLayout, PanelCardGrid, PanelRedirect, PanelSteps, PanelLinks } from "../components/layout/SectionLayout";
 
 const popular = [
   { label: "Calendário Acadêmico" },
@@ -112,13 +112,14 @@ const sections = [
     id: "biblioteca",
     label: "Biblioteca",
     content: (
-      <PanelCardGrid
-        intro="Biblioteca Central — acervo físico, periódicos, teses, dissertações e bases digitais."
-        cards={[
-          { title: "Catálogo online", desc: "Consulte o acervo, faça reservas e acompanhe empréstimos." },
-          { title: "Bases de dados", desc: "Acesso a Capes, Scopus, Scielo e demais bases científicas." },
-          { title: "Horários", desc: "Segunda a sexta · 7h às 22h. Sábados · 8h às 12h." },
-          { title: "Normalização", desc: "Suporte para formatação ABNT de trabalhos acadêmicos." },
+      <PanelLinks
+        intro="Acesse o acervo, renove empréstimos e consulte as normas da biblioteca."
+        links={[
+          { label: "Catálogo de livros", desc: "Consulte o acervo físico e reserve exemplares.", external: true },
+          { label: "Empréstimos e renovação", desc: "Acompanhe e renove seus empréstimos online.", external: true },
+          { label: "Normas da biblioteca", desc: "Regras de uso, prazos e penalidades." },
+          { label: "Contatos", desc: "Telefones, e-mail e horários de atendimento." },
+          { label: "Biblioteca virtual", desc: "Acervo digital de livros e periódicos.", external: true },
         ]}
       />
     ),

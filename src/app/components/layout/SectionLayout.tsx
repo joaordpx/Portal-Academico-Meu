@@ -249,6 +249,44 @@ export function PanelRedirect({
   );
 }
 
+type LinkItem = { label: string; desc?: string; href?: string; external?: boolean };
+
+/* Helper: grade de botões-link (catálogos, serviços, normas, etc.) */
+export function PanelLinks({ intro, links }: { intro?: string; links: LinkItem[] }) {
+  return (
+    <div>
+      {intro && (
+        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
+      )}
+      <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {links.map((l) => {
+          const Icon = l.external ? ExternalLink : ArrowUpRight;
+          return (
+            <a
+              key={l.label}
+              href={l.href ?? "#"}
+              {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="group flex items-start justify-between gap-4 rounded-[8px] border border-[#e5e5e5] bg-white px-5 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#6E3AFF]/50 hover:shadow-[0_8px_22px_rgba(26,26,26,0.08)]"
+            >
+              <div className="min-w-0">
+                <h4 className="text-[15px] font-bold tracking-[-0.01em] text-[#1a1a1a]">
+                  {l.label}
+                </h4>
+                {l.desc && (
+                  <p className="mt-1 text-[13px] leading-[1.5] text-[#1a1a1a]/60">{l.desc}</p>
+                )}
+              </div>
+              <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#e5e5e5] text-[#1a1a1a]/50 transition-all duration-200 group-hover:border-[#1a1a1a] group-hover:bg-[#1a1a1a] group-hover:text-white">
+                <Icon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 type Step = { title: string; desc: string; image?: string; imageLabel?: string };
 type Track = { id: string; label: string; note?: string; steps: Step[] };
 
