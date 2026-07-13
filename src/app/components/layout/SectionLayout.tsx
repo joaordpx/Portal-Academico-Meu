@@ -169,28 +169,32 @@ export function PanelCardGrid({
           {intro}
         </p>
       )}
-      <div className="mt-10 grid grid-cols-1 gap-0 border-t border-[#e5e5e5] sm:grid-cols-2">
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {cards.map((c, i) => (
           <a
             key={c.title}
             href={c.href ?? "#"}
-            className={`group flex flex-col justify-between gap-6 border-b border-[#e5e5e5] p-7 transition-colors hover:bg-[#fafafa] ${i % 2 === 0 ? "sm:border-r" : ""
-              }`}
+            className="group relative flex flex-col justify-between gap-6 rounded-[10px] border border-[#e5e5e5] bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#6E3AFF]/50 hover:shadow-[0_10px_28px_rgba(110,58,255,0.12)]"
           >
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">
-                {String(i + 1).padStart(2, "0")}
+              <div className="flex items-start justify-between">
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {/* Indicador persistente de que o card é clicável */}
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#e5e5e5] text-[#1a1a1a]/50 transition-all duration-200 group-hover:border-[#6E3AFF] group-hover:bg-[#6E3AFF] group-hover:text-white">
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
               </div>
-              <h3 className="mt-4 text-balance text-[22px] font-bold leading-[1.1] tracking-[-0.02em] text-[#1a1a1a]">
+              <h3 className="mt-4 text-balance text-[22px] font-bold leading-[1.1] tracking-[-0.02em] text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]">
                 {c.title}
               </h3>
               <p className="mt-3 text-[14px] leading-[1.55] text-[#1a1a1a]/65">
                 {c.desc}
               </p>
             </div>
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/70 transition-colors group-hover:text-[#6E3AFF]">
               Acessar
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </a>
         ))}
