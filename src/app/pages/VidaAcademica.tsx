@@ -128,13 +128,16 @@ const sections = [
     id: "extracurriculares",
     label: "Atividades Extracurriculares",
     content: (
-      <PanelCardGrid
-        intro="Projetos de pesquisa, extensão, monitoria, ligas acadêmicas e empresas juniores."
-        cards={[
-          { title: "Iniciação Científica", desc: "PIBIC, PIBITI e bolsas de pesquisa por edital." },
-          { title: "Monitoria", desc: "Auxílio acadêmico em disciplinas com remuneração." },
-          { title: "Extensão", desc: "Projetos com a comunidade — atendimento, cultura, saúde." },
-          { title: "Empresas Juniores", desc: "Vivência empresarial supervisionada pelos professores." },
+      <PanelLinks
+        intro="Informações sobre atividades complementares, iniciação científica, extensão, estágio e monitoria."
+        links={[
+          { label: "AACC", desc: "Atividades Acadêmico-Científico-Culturais — horas complementares." },
+          { label: "AIEX", desc: "Atividades de Interação Ensino-Extensão." },
+          { label: "Iniciação Científica", desc: "PIBIC, PIBITI e bolsas de pesquisa por edital." },
+          { label: "Extensão", desc: "Projetos de extensão junto à comunidade." },
+          { label: "Estágio", desc: "Estágio obrigatório e não obrigatório — normas e vagas." },
+          { label: "Monitoria", desc: "Auxílio acadêmico em disciplinas, com bolsa." },
+          { label: "Cursos Gratuitos", desc: "Cursos e capacitações abertos aos estudantes." },
         ]}
       />
     ),
