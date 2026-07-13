@@ -1,6 +1,6 @@
 import { GraduationCap } from "lucide-react";
 import { PageHeader } from "../components/layout/PageHeader";
-import { SectionLayout, PanelCardGrid, PanelRedirect } from "../components/layout/SectionLayout";
+import { SectionLayout, PanelCardGrid, PanelRedirect, PanelSteps } from "../components/layout/SectionLayout";
 
 const popular = [
   { label: "Calendário Acadêmico" },
@@ -49,15 +49,61 @@ const sections = [
   },
   {
     id: "matricula",
-    label: "Matrícula e Rematrícula",
+    label: "Matrícula e Renovação de Matrícula",
     content: (
-      <PanelCardGrid
-        intro="Tudo sobre matrícula em disciplinas, renovação semestral e ajuste de horários."
-        cards={[
-          { title: "Matrícula inicial", desc: "Calouros aprovados — procedimentos e documentos." },
-          { title: "Rematrícula", desc: "Renovação obrigatória a cada semestre via WebGiz." },
-          { title: "Ajuste de matrícula", desc: "Trocas e inclusões durante a primeira semana de aulas." },
-          { title: "Trancamento", desc: "Como solicitar trancamento total ou parcial." },
+      <PanelSteps
+        intro="Orientações, prazos e documentos necessários para a matrícula inicial e a renovação de matrícula."
+        tracks={[
+          {
+            id: "inicial",
+            label: "Matrícula Inicial (1º período)",
+            note: "A primeira matrícula, do 1º período, é realizada presencialmente pela Secretaria Geral da Unimontes. Os candidatos aprovados devem seguir as instruções do edital de convocação.",
+            steps: [
+              {
+                title: "Acompanhe o edital de convocação",
+                desc: "Após o resultado do processo seletivo, fique atento ao edital de matrícula, que informa datas, locais, horários e a documentação exigida.",
+              },
+              {
+                title: "Reúna a documentação exigida",
+                desc: "Separe os documentos solicitados no edital (documento de identidade, CPF, certificado e histórico do ensino médio, comprovante de residência, fotografia, entre outros).",
+              },
+              {
+                title: "Compareça à Secretaria Geral",
+                desc: "Dirija-se presencialmente à Secretaria Geral no período indicado para entregar a documentação e efetivar a matrícula.",
+              },
+              {
+                title: "Receba seu número de matrícula",
+                desc: "Após a conferência dos documentos, a matrícula é efetivada e você recebe o número de matrícula, que dá acesso ao WebGiz e aos demais sistemas.",
+              },
+            ],
+          },
+          {
+            id: "renovacao",
+            label: "Renovação de Matrícula",
+            note: "A renovação (rematrícula) é obrigatória a cada semestre e feita pelo próprio estudante, de forma online, pelo sistema WebGiz, dentro do prazo do calendário acadêmico.",
+            steps: [
+              {
+                title: "Acesse o WebGiz",
+                desc: "Entre no sistema WebGiz com o seu número de matrícula e senha.",
+                imageLabel: "Imagem ilustrativa — tela de login do WebGiz",
+              },
+              {
+                title: "Abra o período de renovação",
+                desc: "No menu do sistema, acesse a opção de renovação de matrícula, disponível apenas durante o prazo definido no calendário acadêmico.",
+                imageLabel: "Imagem ilustrativa — menu de renovação de matrícula",
+              },
+              {
+                title: "Selecione as disciplinas",
+                desc: "Escolha as disciplinas do semestre, respeitando pré-requisitos e evitando choques de horário.",
+                imageLabel: "Imagem ilustrativa — seleção de disciplinas",
+              },
+              {
+                title: "Confirme e salve o comprovante",
+                desc: "Revise as disciplinas selecionadas, confirme a solicitação e salve ou imprima o comprovante de renovação de matrícula.",
+                imageLabel: "Imagem ilustrativa — comprovante de renovação",
+              },
+            ],
+          },
         ]}
       />
     ),

@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Image as ImageIcon, Info } from "lucide-react";
 import { Reveal } from "../shared/Reveal";
 
 type Section = {
@@ -245,6 +245,95 @@ export function PanelRedirect({
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </span>
       </a>
+    </div>
+  );
+}
+
+type Step = { title: string; desc: string; image?: string; imageLabel?: string };
+type Track = { id: string; label: string; note?: string; steps: Step[] };
+
+/* Helper: passo a passo com trilhas alternáveis (ex.: matrícula inicial x renovação) */
+export function PanelSteps({ intro, tracks }: { intro?: string; tracks: Track[] }) {
+  const [active, setActive] = useState(tracks[0]?.id);
+  const current = tracks.find((t) => t.id === active) ?? tracks[0];
+
+  return (
+    <div>
+      {intro && (
+        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
+      )}
+
+      {tracks.length > 1 && (
+        <div className="mt-8 inline-flex flex-wrap gap-1 rounded-[8px] border border-[#e5e5e5] bg-[#fafafa] p-1">
+          {tracks.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setActive(t.id)}
+              className={`relative rounded-[6px] px-4 py-2.5 text-[13px] font-bold transition-colors ${
+                current.id === t.id ? "text-white" : "text-[#1a1a1a]/60 hover:text-[#1a1a1a]"
+              }`}
+            >
+              {current.id === t.id && (
+                <motion.span
+                  layoutId="track-pill"
+                  className="absolute inset-0 rounded-[6px] bg-[#1a1a1a]"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10">{t.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current.id}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.25 }}
+        >
+          {current.note && (
+            <div className="mt-8 flex items-start gap-3 rounded-[8px] border border-[#e5e5e5] bg-[#fafafa] p-4">
+              <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#6E3AFF]" />
+              <p className="text-[14px] leading-[1.55] text-[#1a1a1a]/75">{current.note}</p>
+            </div>
+          )}
+
+          <ol className="mt-10">
+            {current.steps.map((s, i) => (
+              <li key={i} className="relative flex gap-5 pb-9 last:pb-0">
+                {/* Linha conectora vertical */}
+                {i < current.steps.length - 1 && (
+                  <span className="absolute left-[17px] top-10 h-[calc(100%-1.5rem)] w-px bg-[#e5e5e5]" />
+                )}
+                <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#1a1a1a] bg-white text-[13px] font-bold text-[#1a1a1a]">
+                  {i + 1}
+                </span>
+                <div className="flex-1 pt-1">
+                  <h4 className="text-[17px] font-bold tracking-[-0.01em] text-[#1a1a1a]">
+                    {s.title}
+                  </h4>
+                  <p className="mt-1.5 text-[14px] leading-[1.6] text-[#1a1a1a]/65">{s.desc}</p>
+                  {(s.image || s.imageLabel) && (
+                    <div className="mt-4 overflow-hidden rounded-[8px] border border-dashed border-[#d5d5d5] bg-[#fafafa]">
+                      {s.image ? (
+                        <img src={s.image} alt={s.imageLabel ?? s.title} className="w-full" />
+                      ) : (
+                        <div className="flex items-center gap-2.5 px-4 py-6 text-[12px] font-semibold text-[#1a1a1a]/40">
+                          <ImageIcon className="h-4 w-4" />
+                          {s.imageLabel ?? "Imagem ilustrativa"}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
