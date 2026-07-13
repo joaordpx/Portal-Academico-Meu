@@ -1,6 +1,6 @@
 import { GraduationCap } from "lucide-react";
 import { PageHeader } from "../components/layout/PageHeader";
-import { SectionLayout, PanelCardGrid } from "../components/layout/SectionLayout";
+import { SectionLayout, PanelCardGrid, PanelRedirect } from "../components/layout/SectionLayout";
 
 const popular = [
   { label: "Calendário Acadêmico" },
@@ -39,14 +39,11 @@ const sections = [
     id: "calendario",
     label: "Calendário Acadêmico",
     content: (
-      <PanelCardGrid
-        intro="Datas oficiais do semestre — provas, recessos, prazos de matrícula e eventos institucionais."
-        cards={[
-          { title: "Calendário 2026/1", desc: "Período letivo atual com todas as datas oficiais." },
-          { title: "Calendário 2026/2", desc: "Próximo semestre — matrícula, início das aulas e provas." },
-          { title: "Recessos e feriados", desc: "Lista completa de pausas previstas no calendário." },
-          { title: "Calendário pós-graduação", desc: "Datas específicas dos programas de stricto sensu." },
-        ]}
+      <PanelRedirect
+        intro="Consulte datas importantes, prazos acadêmicos e eventos no calendário oficial da Unimontes."
+        title="Calendário Acadêmico da Unimontes"
+        note="O calendário é atualizado a cada semestre diretamente no site oficial da universidade. Ao clicar, você será redirecionado para a página oficial, sempre com a versão mais recente."
+        href="https://unimontes.br/calendario/"
       />
     ),
   },

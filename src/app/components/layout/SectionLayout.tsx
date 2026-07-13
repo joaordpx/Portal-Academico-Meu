@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { Reveal } from "../shared/Reveal";
 
 type Section = {
@@ -182,23 +182,69 @@ export function PanelCardGrid({
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 {/* Indicador persistente de que o card é clicável */}
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#e5e5e5] text-[#1a1a1a]/50 transition-all duration-200 group-hover:border-[#6E3AFF] group-hover:bg-[#6E3AFF] group-hover:text-white">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#e5e5e5] text-[#1a1a1a]/50 transition-all duration-200 group-hover:border-[#1a1a1a] group-hover:bg-[#1a1a1a] group-hover:text-white">
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </div>
-              <h3 className="mt-4 text-balance text-[22px] font-bold leading-[1.1] tracking-[-0.02em] text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]">
+              <h3 className="mt-4 text-balance text-[22px] font-bold leading-[1.1] tracking-[-0.02em] text-[#1a1a1a]">
                 {c.title}
               </h3>
               <p className="mt-3 text-[14px] leading-[1.55] text-[#1a1a1a]/65">
                 {c.desc}
               </p>
             </div>
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/70 transition-colors group-hover:text-[#6E3AFF]">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/70">
               Acessar
             </span>
           </a>
         ))}
       </div>
+    </div>
+  );
+}
+
+/* Helper: painel de redirecionamento para uma fonte oficial externa (ex.: site da Unimontes) */
+export function PanelRedirect({
+  intro,
+  eyebrow = "Site oficial da Unimontes",
+  title,
+  note,
+  href,
+}: {
+  intro?: string;
+  eyebrow?: string;
+  title: string;
+  note?: string;
+  href: string;
+}) {
+  return (
+    <div>
+      {intro && (
+        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
+      )}
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mt-10 flex flex-col gap-6 rounded-[12px] border border-[#e5e5e5] bg-white p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#6E3AFF]/50 hover:shadow-[0_10px_28px_rgba(110,58,255,0.12)] sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#6E3AFF]">
+            <ExternalLink className="h-3.5 w-3.5" />
+            {eyebrow}
+          </div>
+          <h3 className="mt-3 text-balance text-[26px] font-bold leading-[1.1] tracking-[-0.025em] text-[#1a1a1a]">
+            {title}
+          </h3>
+          {note && (
+            <p className="mt-3 max-w-xl text-[14px] leading-[1.55] text-[#1a1a1a]/60">{note}</p>
+          )}
+        </div>
+        <span className="inline-flex shrink-0 items-center gap-2 self-start rounded-[6px] bg-[#1a1a1a] px-5 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-white transition-colors group-hover:bg-[#6E3AFF] sm:self-auto">
+          Abrir
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </span>
+      </a>
     </div>
   );
 }
