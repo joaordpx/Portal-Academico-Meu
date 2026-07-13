@@ -146,13 +146,12 @@ const sections = [
     id: "tecnologicos",
     label: "Recursos Tecnológicos",
     content: (
-      <PanelCardGrid
+      <PanelLinks
         intro="Sistemas, plataformas e infraestrutura tecnológica disponíveis ao estudante."
-        cards={[
-          { title: "WebGiz", desc: "Sistema acadêmico — notas, frequência, histórico, matrícula." },
-          { title: "Moodle", desc: "Plataforma de aprendizagem para disciplinas EAD e híbridas." },
-          { title: "E-mail institucional", desc: "Conta @unimontes.br com Google Workspace." },
-          { title: "Wi-Fi do campus", desc: "Rede UNIMONTES disponível em todos os blocos." },
+        links={[
+          { label: "E-mail institucional", desc: "Conta institucional do estudante e como acessá-la." },
+          { label: "Wi-Fi", desc: "Rede sem fio do campus — como se conectar." },
+          { label: "Laboratórios", desc: "Laboratórios de informática e horários de uso." },
         ]}
       />
     ),
