@@ -160,13 +160,14 @@ const sections = [
     id: "normas",
     label: "Normas Acadêmicas",
     content: (
-      <PanelCardGrid
-        intro="Resoluções, regimentos e normas que regem a vida acadêmica na universidade."
-        cards={[
-          { title: "Regimento Geral", desc: "Documento institucional principal da Unimontes." },
-          { title: "Resoluções CEPEx", desc: "Normas de ensino, pesquisa e extensão." },
-          { title: "Código Disciplinar", desc: "Direitos, deveres e procedimentos disciplinares." },
-          { title: "Aproveitamento de estudos", desc: "Dispensa de disciplinas já cursadas." },
+      <PanelLinks
+        intro="Resoluções e normas que regem a vida acadêmica na universidade."
+        links={[
+          { label: "Direitos e deveres", desc: "Direitos, deveres e conduta do estudante." },
+          { label: "Avaliação e frequência", desc: "Critérios de aprovação, notas e frequência mínima." },
+          { label: "Trancamento", desc: "Como solicitar trancamento total ou parcial." },
+          { label: "Segunda chamada", desc: "Solicitação de prova em segunda chamada." },
+          { label: "Aproveitamento de estudos", desc: "Dispensa de disciplinas já cursadas." },
         ]}
       />
     ),
