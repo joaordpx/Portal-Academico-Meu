@@ -176,13 +176,15 @@ const sections = [
     id: "tutoriais",
     label: "Tutoriais",
     content: (
-      <PanelCardGrid
+      <PanelLinks
         intro="Passo a passo para os principais serviços e sistemas do portal."
-        cards={[
-          { title: "Como fazer matrícula no WebGiz", desc: "Vídeo + roteiro escrito para rematrícula." },
-          { title: "Solicitar declaração de matrícula", desc: "Emissão online em poucos cliques." },
-          { title: "Acessar bases de dados", desc: "Como entrar nas bases pela rede do campus ou via VPN." },
-          { title: "Recuperar senha do portal", desc: "Procedimento de redefinição de senha do WebGiz." },
+        links={[
+          { label: "Uso de sistemas", desc: "Como acessar e navegar pelos sistemas da universidade." },
+          { label: "Matrícula", desc: "Passo a passo da matrícula e renovação." },
+          { label: "Documentos", desc: "Como emitir declarações, histórico e demais documentos." },
+          { label: "Busca", desc: "Como localizar informações e serviços no portal." },
+          { label: "Requerimento", desc: "Como abrir e acompanhar requerimentos." },
+          { label: "Processos acadêmicos", desc: "Orientações sobre processos e trâmites acadêmicos." },
         ]}
       />
     ),
