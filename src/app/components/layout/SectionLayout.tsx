@@ -85,23 +85,24 @@ export function SectionLayout({
               <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#1a1a1a]/40">
                 Nesta seção
               </div>
-              <nav className="mt-5 flex flex-col border-t border-[#e5e5e5]">
+              <nav className="mt-4 flex flex-col gap-1">
                 {sections.map((s) => (
                   <button
                     key={s.id}
                     onClick={() => setActive(s.id)}
-                    className={`group flex items-center justify-between border-b border-[#e5e5e5] py-3.5 text-left text-[13px] transition-colors ${active === s.id
-                      ? "font-bold text-[#1a1a1a]"
-                      : "font-medium text-[#1a1a1a]/55 hover:text-[#1a1a1a]"
+                    className={`group relative flex items-center rounded-[8px] px-4 py-3 text-left text-[14px] transition-colors ${active === s.id
+                      ? "font-bold text-[#6E3AFF]"
+                      : "font-medium text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.04] hover:text-[#1a1a1a]"
                       }`}
                   >
-                    <span>{s.label}</span>
                     {active === s.id && (
                       <motion.span
-                        layoutId="section-dot"
-                        className="h-1.5 w-1.5 rounded-full bg-[#6E3AFF]"
+                        layoutId="section-active"
+                        className="absolute inset-0 rounded-[8px] bg-[#6E3AFF]/[0.08]"
+                        transition={{ type: "spring", stiffness: 400, damping: 32 }}
                       />
                     )}
+                    <span className="relative z-10">{s.label}</span>
                   </button>
                 ))}
               </nav>
@@ -245,6 +246,42 @@ export function PanelRedirect({
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </span>
       </a>
+    </div>
+  );
+}
+
+/* Helper: bloco "Links relacionados" (links azuis) dentro de uma seção */
+export function PanelRelated({
+  links,
+}: {
+  links: { label: string; to?: string; href?: string }[];
+}) {
+  return (
+    <div className="mt-10 border-t border-[#e5e5e5] pt-6">
+      <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/70">
+        Links relacionados
+      </div>
+      <div className="mt-3 flex flex-wrap gap-x-8 gap-y-2.5">
+        {links.map((l) =>
+          l.to ? (
+            <Link
+              key={l.label}
+              to={l.to}
+              className="text-[13px] font-medium text-[#2563EB] hover:underline"
+            >
+              {l.label}
+            </Link>
+          ) : (
+            <a
+              key={l.label}
+              href={l.href ?? "#"}
+              className="text-[13px] font-medium text-[#2563EB] hover:underline"
+            >
+              {l.label}
+            </a>
+          ),
+        )}
+      </div>
     </div>
   );
 }
