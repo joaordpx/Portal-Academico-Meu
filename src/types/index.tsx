@@ -35,6 +35,30 @@ export interface DestaqueHero {
     ativo: boolean;
 }
 
+/* ─────────────── Editais e Oportunidades ─────────────── */
+
+export type EditalStatus = "Aberto" | "Encerrado";
+
+export type EditalTipo =
+    | "Monitoria"
+    | "Extensão"
+    | "Pesquisa"
+    | "Estágio"
+    | "Assistência"
+    | "Mobilidade";
+
+/** Registro cru de um edital (espelha a futura tabela) */
+export interface Edital {
+    id: number;
+    titulo: string;
+    status: EditalStatus;
+    tipo: EditalTipo;
+    curso: string;
+    campus: string;
+    prazo: string; // ISO (YYYY-MM-DD) — formatação fica na view
+    url?: string;
+}
+
 /* ─────────────── Cursos ─────────────── */
 
 export type Grau =
