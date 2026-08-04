@@ -10,31 +10,50 @@ type Section = {
   content: ReactNode;
 };
 
+/** Cor de acento da página (paleta do portal) */
+export type Accent = "roxo" | "verde" | "vermelho" | "amarelo";
+
+export const ACCENT: Record<Accent, { hex: string; text: string; bgSoft: string }> = {
+  roxo: { hex: "#6E3AFF", text: "text-[#6E3AFF]", bgSoft: "bg-[#6E3AFF]/[0.08]" },
+  verde: { hex: "#00B894", text: "text-[#0a7d68]", bgSoft: "bg-[#00B894]/[0.10]" },
+  vermelho: { hex: "#FF4D2E", text: "text-[#FF4D2E]", bgSoft: "bg-[#FF4D2E]/[0.08]" },
+  amarelo: { hex: "#FFB800", text: "text-[#9a7000]", bgSoft: "bg-[#FFB800]/[0.14]" },
+};
+
 export function SectionLayout({
   popular,
   tags,
   searchPlaceholder,
   sections,
   related,
+  sidebarTitle = "Nesta seção",
+  sidebarRelated,
+  accent = "roxo",
 }: {
-  popular: { label: string; href?: string }[];
-  tags: string[];
-  searchPlaceholder: string;
+  popular?: { label: string; href?: string }[];
+  tags?: string[];
+  searchPlaceholder?: string;
   sections: Section[];
   related: { label: string; to: string }[];
+  sidebarTitle?: string;
+  sidebarRelated?: { label: string; to?: string; href?: string }[];
+  accent?: Accent;
 }) {
   const [active, setActive] = useState(sections[0]?.id);
+  const ac = ACCENT[accent];
+  const hasSearch = Boolean(popular?.length || searchPlaceholder);
 
   return (
     <>
       {/* Mais acessados + Search */}
+      {hasSearch && (
       <section className="bg-white">
         <div className="mx-auto max-w-[1400px] px-6 pt-10 pb-12 lg:px-12 lg:pt-12 lg:pb-16">
           <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#1a1a1a]/40">
             Mais acessados
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
-            {popular.map((p) => (
+            {popular?.map((p) => (
               <a
                 key={p.label}
                 href={p.href ?? "#"}
@@ -65,7 +84,7 @@ export function SectionLayout({
             <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">
               Sugestões:
             </span>
-            {tags.map((t) => (
+            {tags?.map((t) => (
               <button
                 key={t}
                 className="text-[12px] text-[#1a1a1a]/60 transition-colors hover:text-[#6E3AFF]"
@@ -76,6 +95,7 @@ export function SectionLayout({
           </div>
         </div>
       </section>
+      )}
 
       {/* Sidebar + active section content */}
       <section className="border-t border-[#e5e5e5] bg-white">
@@ -83,7 +103,7 @@ export function SectionLayout({
           <aside className="lg:col-span-3">
             <div className="lg:sticky lg:top-40">
               <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#1a1a1a]/40">
-                Nesta seção
+                {sidebarTitle}
               </div>
               <nav className="mt-4 flex flex-col gap-1">
                 {sections.map((s) => (
@@ -91,14 +111,14 @@ export function SectionLayout({
                     key={s.id}
                     onClick={() => setActive(s.id)}
                     className={`group relative flex items-center rounded-[8px] px-4 py-3 text-left text-[14px] transition-colors ${active === s.id
-                      ? "font-bold text-[#6E3AFF]"
+                      ? `font-bold ${ac.text}`
                       : "font-medium text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.04] hover:text-[#1a1a1a]"
                       }`}
                   >
                     {active === s.id && (
                       <motion.span
                         layoutId="section-active"
-                        className="absolute inset-0 rounded-[8px] bg-[#6E3AFF]/[0.08]"
+                        className={`absolute inset-0 rounded-[8px] ${ac.bgSoft}`}
                         transition={{ type: "spring", stiffness: 400, damping: 32 }}
                       />
                     )}
@@ -106,6 +126,35 @@ export function SectionLayout({
                   </button>
                 ))}
               </nav>
+
+              {sidebarRelated && sidebarRelated.length > 0 && (
+                <div className="mt-8 border-t border-[#e5e5e5] pt-6">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#1a1a1a]/40">
+                    Links relacionados
+                  </div>
+                  <div className="mt-3 flex flex-col gap-2">
+                    {sidebarRelated.map((l) =>
+                      l.to ? (
+                        <Link
+                          key={l.label}
+                          to={l.to}
+                          className="text-[13px] font-medium text-[#2563EB] hover:underline"
+                        >
+                          {l.label}
+                        </Link>
+                      ) : (
+                        <a
+                          key={l.label}
+                          href={l.href ?? "#"}
+                          className="text-[13px] font-medium text-[#2563EB] hover:underline"
+                        >
+                          {l.label}
+                        </a>
+                      ),
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </aside>
 
@@ -288,8 +337,23 @@ export function PanelRelated({
 
 type LinkItem = { label: string; desc?: string; href?: string; external?: boolean };
 
+const HOVER_BORDER: Record<Accent, string> = {
+  roxo: "hover:border-[#6E3AFF]/50",
+  verde: "hover:border-[#00B894]/60",
+  vermelho: "hover:border-[#FF4D2E]/50",
+  amarelo: "hover:border-[#FFB800]/70",
+};
+
 /* Helper: grade de botões-link (catálogos, serviços, normas, etc.) */
-export function PanelLinks({ intro, links }: { intro?: string; links: LinkItem[] }) {
+export function PanelLinks({
+  intro,
+  links,
+  accent = "roxo",
+}: {
+  intro?: string;
+  links: LinkItem[];
+  accent?: Accent;
+}) {
   return (
     <div>
       {intro && (
@@ -303,7 +367,7 @@ export function PanelLinks({ intro, links }: { intro?: string; links: LinkItem[]
               key={l.label}
               href={l.href ?? "#"}
               {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="group flex items-start justify-between gap-4 rounded-[8px] border border-[#e5e5e5] bg-white px-5 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#6E3AFF]/50 hover:shadow-[0_8px_22px_rgba(26,26,26,0.08)]"
+              className={`group flex items-start justify-between gap-4 rounded-[8px] border border-[#e5e5e5] bg-white px-5 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(26,26,26,0.08)] ${HOVER_BORDER[accent]}`}
             >
               <div className="min-w-0">
                 <h4 className="text-[15px] font-bold tracking-[-0.01em] text-[#1a1a1a]">
