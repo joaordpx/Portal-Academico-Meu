@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "../components/shared/Reveal";
 import { ImageWithFallback } from "../components/shared/ImageWithFallback";
+import campusPredio1 from "../../assets/campus-predio-1.jpg";
 
 // Importando Tipos e Serviços
 import { Comunicado, Oportunidade, Noticia, DestaqueHero } from "../../types";
@@ -151,8 +152,8 @@ function HeroIntro({ destaque }: { destaque: DestaqueHero | null }) {
               {/* DIV DE IMAGEM INSERIDA AQUI NO LOCAL CORRETO */}
               <div className="relative overflow-hidden rounded-[4px] border border-[#1a1a1a]">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1607013407627-6ee814329547?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-                  alt="Estudantes da Unimontes"
+                  src={campusPredio1}
+                  alt="Prédio 1 — Campus Universitário da Unimontes"
                   className="aspect-[4/5] w-full object-cover"
                 />
 

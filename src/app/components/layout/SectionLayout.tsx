@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Image as ImageIcon, Info } from "lucide-react";
 import { Reveal } from "../shared/Reveal";
 
 type Section = {
@@ -169,17 +169,22 @@ export function PanelCardGrid({
           {intro}
         </p>
       )}
-      <div className="mt-10 grid grid-cols-1 gap-0 border-t border-[#e5e5e5] sm:grid-cols-2">
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {cards.map((c, i) => (
           <a
             key={c.title}
             href={c.href ?? "#"}
-            className={`group flex flex-col justify-between gap-6 border-b border-[#e5e5e5] p-7 transition-colors hover:bg-[#fafafa] ${i % 2 === 0 ? "sm:border-r" : ""
-              }`}
+            className="group relative flex flex-col justify-between gap-6 rounded-[10px] border border-[#e5e5e5] bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#6E3AFF]/50 hover:shadow-[0_10px_28px_rgba(110,58,255,0.12)]"
           >
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">
-                {String(i + 1).padStart(2, "0")}
+              <div className="flex items-start justify-between">
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {/* Indicador persistente de que o card é clicável */}
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#e5e5e5] text-[#1a1a1a]/50 transition-all duration-200 group-hover:border-[#1a1a1a] group-hover:bg-[#1a1a1a] group-hover:text-white">
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
               </div>
               <h3 className="mt-4 text-balance text-[22px] font-bold leading-[1.1] tracking-[-0.02em] text-[#1a1a1a]">
                 {c.title}
@@ -188,13 +193,185 @@ export function PanelCardGrid({
                 {c.desc}
               </p>
             </div>
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/70">
               Acessar
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </a>
         ))}
       </div>
+    </div>
+  );
+}
+
+/* Helper: painel de redirecionamento para uma fonte oficial externa (ex.: site da Unimontes) */
+export function PanelRedirect({
+  intro,
+  eyebrow = "Site oficial da Unimontes",
+  title,
+  note,
+  href,
+}: {
+  intro?: string;
+  eyebrow?: string;
+  title: string;
+  note?: string;
+  href: string;
+}) {
+  return (
+    <div>
+      {intro && (
+        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
+      )}
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mt-10 flex flex-col gap-6 rounded-[12px] border border-[#e5e5e5] bg-white p-8 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#6E3AFF]/50 hover:shadow-[0_10px_28px_rgba(110,58,255,0.12)] sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#6E3AFF]">
+            <ExternalLink className="h-3.5 w-3.5" />
+            {eyebrow}
+          </div>
+          <h3 className="mt-3 text-balance text-[26px] font-bold leading-[1.1] tracking-[-0.025em] text-[#1a1a1a]">
+            {title}
+          </h3>
+          {note && (
+            <p className="mt-3 max-w-xl text-[14px] leading-[1.55] text-[#1a1a1a]/60">{note}</p>
+          )}
+        </div>
+        <span className="inline-flex shrink-0 items-center gap-2 self-start rounded-[6px] bg-[#1a1a1a] px-5 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-white transition-colors group-hover:bg-[#6E3AFF] sm:self-auto">
+          Abrir
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </span>
+      </a>
+    </div>
+  );
+}
+
+type LinkItem = { label: string; desc?: string; href?: string; external?: boolean };
+
+/* Helper: grade de botões-link (catálogos, serviços, normas, etc.) */
+export function PanelLinks({ intro, links }: { intro?: string; links: LinkItem[] }) {
+  return (
+    <div>
+      {intro && (
+        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
+      )}
+      <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {links.map((l) => {
+          const Icon = l.external ? ExternalLink : ArrowUpRight;
+          return (
+            <a
+              key={l.label}
+              href={l.href ?? "#"}
+              {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="group flex items-start justify-between gap-4 rounded-[8px] border border-[#e5e5e5] bg-white px-5 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#6E3AFF]/50 hover:shadow-[0_8px_22px_rgba(26,26,26,0.08)]"
+            >
+              <div className="min-w-0">
+                <h4 className="text-[15px] font-bold tracking-[-0.01em] text-[#1a1a1a]">
+                  {l.label}
+                </h4>
+                {l.desc && (
+                  <p className="mt-1 text-[13px] leading-[1.5] text-[#1a1a1a]/60">{l.desc}</p>
+                )}
+              </div>
+              <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#e5e5e5] text-[#1a1a1a]/50 transition-all duration-200 group-hover:border-[#1a1a1a] group-hover:bg-[#1a1a1a] group-hover:text-white">
+                <Icon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+type Step = { title: string; desc: string; image?: string; imageLabel?: string };
+type Track = { id: string; label: string; note?: string; steps: Step[] };
+
+/* Helper: passo a passo com trilhas alternáveis (ex.: matrícula inicial x renovação) */
+export function PanelSteps({ intro, tracks }: { intro?: string; tracks: Track[] }) {
+  const [active, setActive] = useState(tracks[0]?.id);
+  const current = tracks.find((t) => t.id === active) ?? tracks[0];
+
+  return (
+    <div>
+      {intro && (
+        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
+      )}
+
+      {tracks.length > 1 && (
+        <div className="mt-8 inline-flex flex-wrap gap-1 rounded-[8px] border border-[#e5e5e5] bg-[#fafafa] p-1">
+          {tracks.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setActive(t.id)}
+              className={`relative rounded-[6px] px-4 py-2.5 text-[13px] font-bold transition-colors ${
+                current.id === t.id ? "text-white" : "text-[#1a1a1a]/60 hover:text-[#1a1a1a]"
+              }`}
+            >
+              {current.id === t.id && (
+                <motion.span
+                  layoutId="track-pill"
+                  className="absolute inset-0 rounded-[6px] bg-[#1a1a1a]"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10">{t.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current.id}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.25 }}
+        >
+          {current.note && (
+            <div className="mt-8 flex items-start gap-3 rounded-[8px] border border-[#e5e5e5] bg-[#fafafa] p-4">
+              <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#6E3AFF]" />
+              <p className="text-[14px] leading-[1.55] text-[#1a1a1a]/75">{current.note}</p>
+            </div>
+          )}
+
+          <ol className="mt-10">
+            {current.steps.map((s, i) => (
+              <li key={i} className="relative flex gap-5 pb-9 last:pb-0">
+                {/* Linha conectora vertical */}
+                {i < current.steps.length - 1 && (
+                  <span className="absolute left-[17px] top-10 h-[calc(100%-1.5rem)] w-px bg-[#e5e5e5]" />
+                )}
+                <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#1a1a1a] bg-white text-[13px] font-bold text-[#1a1a1a]">
+                  {i + 1}
+                </span>
+                <div className="flex-1 pt-1">
+                  <h4 className="text-[17px] font-bold tracking-[-0.01em] text-[#1a1a1a]">
+                    {s.title}
+                  </h4>
+                  <p className="mt-1.5 text-[14px] leading-[1.6] text-[#1a1a1a]/65">{s.desc}</p>
+                  {(s.image || s.imageLabel) && (
+                    <div className="mt-4 overflow-hidden rounded-[8px] border border-dashed border-[#d5d5d5] bg-[#fafafa]">
+                      {s.image ? (
+                        <img src={s.image} alt={s.imageLabel ?? s.title} className="w-full" />
+                      ) : (
+                        <div className="flex items-center gap-2.5 px-4 py-6 text-[12px] font-semibold text-[#1a1a1a]/40">
+                          <ImageIcon className="h-4 w-4" />
+                          {s.imageLabel ?? "Imagem ilustrativa"}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

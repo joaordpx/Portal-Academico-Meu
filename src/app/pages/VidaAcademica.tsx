@@ -1,6 +1,6 @@
 import { GraduationCap } from "lucide-react";
 import { PageHeader } from "../components/layout/PageHeader";
-import { SectionLayout, PanelCardGrid } from "../components/layout/SectionLayout";
+import { SectionLayout, PanelCardGrid, PanelRedirect, PanelSteps, PanelLinks } from "../components/layout/SectionLayout";
 
 const popular = [
   { label: "Calendário Acadêmico" },
@@ -39,28 +39,71 @@ const sections = [
     id: "calendario",
     label: "Calendário Acadêmico",
     content: (
-      <PanelCardGrid
-        intro="Datas oficiais do semestre — provas, recessos, prazos de matrícula e eventos institucionais."
-        cards={[
-          { title: "Calendário 2026/1", desc: "Período letivo atual com todas as datas oficiais." },
-          { title: "Calendário 2026/2", desc: "Próximo semestre — matrícula, início das aulas e provas." },
-          { title: "Recessos e feriados", desc: "Lista completa de pausas previstas no calendário." },
-          { title: "Calendário pós-graduação", desc: "Datas específicas dos programas de stricto sensu." },
-        ]}
+      <PanelRedirect
+        intro="Consulte datas importantes, prazos acadêmicos e eventos no calendário oficial da Unimontes."
+        title="Calendário Acadêmico da Unimontes"
+        note="O calendário é atualizado a cada semestre diretamente no site oficial da universidade. Ao clicar, você será redirecionado para a página oficial, sempre com a versão mais recente."
+        href="https://unimontes.br/calendario/"
       />
     ),
   },
   {
     id: "matricula",
-    label: "Matrícula e Rematrícula",
+    label: "Matrícula e Renovação de Matrícula",
     content: (
-      <PanelCardGrid
-        intro="Tudo sobre matrícula em disciplinas, renovação semestral e ajuste de horários."
-        cards={[
-          { title: "Matrícula inicial", desc: "Calouros aprovados — procedimentos e documentos." },
-          { title: "Rematrícula", desc: "Renovação obrigatória a cada semestre via WebGiz." },
-          { title: "Ajuste de matrícula", desc: "Trocas e inclusões durante a primeira semana de aulas." },
-          { title: "Trancamento", desc: "Como solicitar trancamento total ou parcial." },
+      <PanelSteps
+        intro="Orientações, prazos e documentos necessários para a matrícula inicial e a renovação de matrícula."
+        tracks={[
+          {
+            id: "inicial",
+            label: "Matrícula Inicial (1º período)",
+            note: "A primeira matrícula, do 1º período, é realizada presencialmente pela Secretaria Geral da Unimontes. Os candidatos aprovados devem seguir as instruções do edital de convocação.",
+            steps: [
+              {
+                title: "Acompanhe o edital de convocação",
+                desc: "Após o resultado do processo seletivo, fique atento ao edital de matrícula, que informa datas, locais, horários e a documentação exigida.",
+              },
+              {
+                title: "Reúna a documentação exigida",
+                desc: "Separe os documentos solicitados no edital (documento de identidade, CPF, certificado e histórico do ensino médio, comprovante de residência, fotografia, entre outros).",
+              },
+              {
+                title: "Compareça à Secretaria Geral",
+                desc: "Dirija-se presencialmente à Secretaria Geral no período indicado para entregar a documentação e efetivar a matrícula.",
+              },
+              {
+                title: "Receba seu número de matrícula",
+                desc: "Após a conferência dos documentos, a matrícula é efetivada e você recebe o número de matrícula, que dá acesso ao WebGiz e aos demais sistemas.",
+              },
+            ],
+          },
+          {
+            id: "renovacao",
+            label: "Renovação de Matrícula",
+            note: "A renovação (rematrícula) é obrigatória a cada semestre e feita pelo próprio estudante, de forma online, pelo sistema WebGiz, dentro do prazo do calendário acadêmico.",
+            steps: [
+              {
+                title: "Acesse o WebGiz",
+                desc: "Entre no sistema WebGiz com o seu número de matrícula e senha.",
+                imageLabel: "Imagem ilustrativa — tela de login do WebGiz",
+              },
+              {
+                title: "Abra o período de renovação",
+                desc: "No menu do sistema, acesse a opção de renovação de matrícula, disponível apenas durante o prazo definido no calendário acadêmico.",
+                imageLabel: "Imagem ilustrativa — menu de renovação de matrícula",
+              },
+              {
+                title: "Selecione as disciplinas",
+                desc: "Escolha as disciplinas do semestre, respeitando pré-requisitos e evitando choques de horário.",
+                imageLabel: "Imagem ilustrativa — seleção de disciplinas",
+              },
+              {
+                title: "Confirme e salve o comprovante",
+                desc: "Revise as disciplinas selecionadas, confirme a solicitação e salve ou imprima o comprovante de renovação de matrícula.",
+                imageLabel: "Imagem ilustrativa — comprovante de renovação",
+              },
+            ],
+          },
         ]}
       />
     ),
@@ -69,13 +112,14 @@ const sections = [
     id: "biblioteca",
     label: "Biblioteca",
     content: (
-      <PanelCardGrid
-        intro="Biblioteca Central — acervo físico, periódicos, teses, dissertações e bases digitais."
-        cards={[
-          { title: "Catálogo online", desc: "Consulte o acervo, faça reservas e acompanhe empréstimos." },
-          { title: "Bases de dados", desc: "Acesso a Capes, Scopus, Scielo e demais bases científicas." },
-          { title: "Horários", desc: "Segunda a sexta · 7h às 22h. Sábados · 8h às 12h." },
-          { title: "Normalização", desc: "Suporte para formatação ABNT de trabalhos acadêmicos." },
+      <PanelLinks
+        intro="Acesse o acervo, renove empréstimos e consulte as normas da biblioteca."
+        links={[
+          { label: "Catálogo de livros", desc: "Consulte o acervo físico e reserve exemplares.", external: true },
+          { label: "Empréstimos e renovação", desc: "Acompanhe e renove seus empréstimos online.", external: true },
+          { label: "Normas da biblioteca", desc: "Regras de uso, prazos e penalidades." },
+          { label: "Contatos", desc: "Telefones, e-mail e horários de atendimento." },
+          { label: "Biblioteca virtual", desc: "Acervo digital de livros e periódicos.", external: true },
         ]}
       />
     ),
@@ -84,13 +128,16 @@ const sections = [
     id: "extracurriculares",
     label: "Atividades Extracurriculares",
     content: (
-      <PanelCardGrid
-        intro="Projetos de pesquisa, extensão, monitoria, ligas acadêmicas e empresas juniores."
-        cards={[
-          { title: "Iniciação Científica", desc: "PIBIC, PIBITI e bolsas de pesquisa por edital." },
-          { title: "Monitoria", desc: "Auxílio acadêmico em disciplinas com remuneração." },
-          { title: "Extensão", desc: "Projetos com a comunidade — atendimento, cultura, saúde." },
-          { title: "Empresas Juniores", desc: "Vivência empresarial supervisionada pelos professores." },
+      <PanelLinks
+        intro="Informações sobre atividades complementares, iniciação científica, extensão, estágio e monitoria."
+        links={[
+          { label: "AACC", desc: "Atividades Acadêmico-Científico-Culturais — horas complementares." },
+          { label: "AIEX", desc: "Atividades de Interação Ensino-Extensão." },
+          { label: "Iniciação Científica", desc: "PIBIC, PIBITI e bolsas de pesquisa por edital." },
+          { label: "Extensão", desc: "Projetos de extensão junto à comunidade." },
+          { label: "Estágio", desc: "Estágio obrigatório e não obrigatório — normas e vagas." },
+          { label: "Monitoria", desc: "Auxílio acadêmico em disciplinas, com bolsa." },
+          { label: "Cursos Gratuitos", desc: "Cursos e capacitações abertos aos estudantes." },
         ]}
       />
     ),
@@ -99,13 +146,12 @@ const sections = [
     id: "tecnologicos",
     label: "Recursos Tecnológicos",
     content: (
-      <PanelCardGrid
+      <PanelLinks
         intro="Sistemas, plataformas e infraestrutura tecnológica disponíveis ao estudante."
-        cards={[
-          { title: "WebGiz", desc: "Sistema acadêmico — notas, frequência, histórico, matrícula." },
-          { title: "Moodle", desc: "Plataforma de aprendizagem para disciplinas EAD e híbridas." },
-          { title: "E-mail institucional", desc: "Conta @unimontes.br com Google Workspace." },
-          { title: "Wi-Fi do campus", desc: "Rede UNIMONTES disponível em todos os blocos." },
+        links={[
+          { label: "E-mail institucional", desc: "Conta institucional do estudante e como acessá-la." },
+          { label: "Wi-Fi", desc: "Rede sem fio do campus — como se conectar." },
+          { label: "Laboratórios", desc: "Laboratórios de informática e horários de uso." },
         ]}
       />
     ),
@@ -114,13 +160,14 @@ const sections = [
     id: "normas",
     label: "Normas Acadêmicas",
     content: (
-      <PanelCardGrid
-        intro="Resoluções, regimentos e normas que regem a vida acadêmica na universidade."
-        cards={[
-          { title: "Regimento Geral", desc: "Documento institucional principal da Unimontes." },
-          { title: "Resoluções CEPEx", desc: "Normas de ensino, pesquisa e extensão." },
-          { title: "Código Disciplinar", desc: "Direitos, deveres e procedimentos disciplinares." },
-          { title: "Aproveitamento de estudos", desc: "Dispensa de disciplinas já cursadas." },
+      <PanelLinks
+        intro="Resoluções e normas que regem a vida acadêmica na universidade."
+        links={[
+          { label: "Direitos e deveres", desc: "Direitos, deveres e conduta do estudante." },
+          { label: "Avaliação e frequência", desc: "Critérios de aprovação, notas e frequência mínima." },
+          { label: "Trancamento", desc: "Como solicitar trancamento total ou parcial." },
+          { label: "Segunda chamada", desc: "Solicitação de prova em segunda chamada." },
+          { label: "Aproveitamento de estudos", desc: "Dispensa de disciplinas já cursadas." },
         ]}
       />
     ),
@@ -129,13 +176,15 @@ const sections = [
     id: "tutoriais",
     label: "Tutoriais",
     content: (
-      <PanelCardGrid
+      <PanelLinks
         intro="Passo a passo para os principais serviços e sistemas do portal."
-        cards={[
-          { title: "Como fazer matrícula no WebGiz", desc: "Vídeo + roteiro escrito para rematrícula." },
-          { title: "Solicitar declaração de matrícula", desc: "Emissão online em poucos cliques." },
-          { title: "Acessar bases de dados", desc: "Como entrar nas bases pela rede do campus ou via VPN." },
-          { title: "Recuperar senha do portal", desc: "Procedimento de redefinição de senha do WebGiz." },
+        links={[
+          { label: "Uso de sistemas", desc: "Como acessar e navegar pelos sistemas da universidade." },
+          { label: "Matrícula", desc: "Passo a passo da matrícula e renovação." },
+          { label: "Documentos", desc: "Como emitir declarações, histórico e demais documentos." },
+          { label: "Busca", desc: "Como localizar informações e serviços no portal." },
+          { label: "Requerimento", desc: "Como abrir e acompanhar requerimentos." },
+          { label: "Processos acadêmicos", desc: "Orientações sobre processos e trâmites acadêmicos." },
         ]}
       />
     ),
