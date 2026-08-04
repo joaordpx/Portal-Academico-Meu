@@ -7,6 +7,7 @@ import { CursoDetalhe } from "./pages/CursoDetalhe";
 import { ServicosDocumentos } from "./pages/ServicosDocumentos";
 import { Editais } from "./pages/Editais";
 import { Eventos } from "./pages/Eventos";
+import { EventoDetalhe } from "./pages/EventoDetalhe";
 import { AssistenciaEstudantil } from "./pages/AssistenciaEstudantil";
 import { MovimentoEstudantil } from "./pages/MovimentoEstudantil";
 import { UnidadesLocalizacao } from "./pages/UnidadesLocalizacao";
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: "servicos-documentos", Component: ServicosDocumentos },
       { path: "editais-oportunidades", Component: Editais },
       { path: "eventos", Component: Eventos },
+      { path: "eventos/:slug", Component: EventoDetalhe },
       { path: "assistencia-estudantil", Component: AssistenciaEstudantil },
       { path: "movimento-estudantil-lazer", Component: MovimentoEstudantil },
       { path: "unidades-localizacao", Component: UnidadesLocalizacao },

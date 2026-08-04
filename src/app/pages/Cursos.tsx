@@ -150,10 +150,10 @@ export function Cursos() {
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
             <button
               onClick={() => setShowFilters((s) => !s)}
-              className={`inline-flex shrink-0 items-center gap-2 rounded-[6px] border px-4 py-3 text-[13px] font-bold transition-colors ${
+              className={`inline-flex shrink-0 items-center gap-2 rounded-[6px] border px-4 py-3 text-[13px] font-bold shadow-[0_1px_2px_rgba(16,24,40,0.06)] transition-colors ${
                 showFilters || activeFilters > 0
-                  ? "border-[#6E3AFF] bg-[#6E3AFF]/[0.04] text-[#6E3AFF]"
-                  : "border-[#e5e5e5] text-[#1a1a1a] hover:border-[#1a1a1a]"
+                  ? "border-[#6E3AFF] bg-[#6E3AFF]/[0.06] text-[#6E3AFF]"
+                  : "border-[#d4d4d4] bg-[#fafafa] text-[#1a1a1a] hover:border-[#1a1a1a] hover:bg-white"
               }`}
             >
               <SlidersHorizontal className="h-4 w-4" />
@@ -166,7 +166,7 @@ export function Cursos() {
             </button>
 
             <div className="relative flex-1">
-              <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1a1a1a]/40" />
+              <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1a1a1a]/55" />
               <input
                 value={query}
                 onChange={(e) => {
@@ -174,7 +174,7 @@ export function Cursos() {
                   setPage(1);
                 }}
                 placeholder="Buscar curso por nome ou área..."
-                className="w-full rounded-[6px] border border-[#e5e5e5] bg-white py-3 pl-11 pr-4 text-[14px] text-[#1a1a1a] outline-none transition-colors placeholder:text-[#1a1a1a]/40 focus:border-[#6E3AFF]"
+                className="w-full rounded-[6px] border border-[#d4d4d4] bg-white py-3 pl-11 pr-4 text-[14px] text-[#1a1a1a] outline-none transition-colors placeholder:text-[#1a1a1a]/40 focus:border-[#6E3AFF]"
               />
             </div>
 
@@ -185,7 +185,7 @@ export function Cursos() {
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SortId)}
-                className="cursor-pointer rounded-[6px] border border-[#e5e5e5] bg-white py-3 pl-3 pr-8 text-[13px] font-semibold text-[#1a1a1a] outline-none transition-colors focus:border-[#6E3AFF]"
+                className="cursor-pointer rounded-[6px] border border-[#d4d4d4] bg-white py-3 pl-3 pr-8 text-[13px] font-semibold text-[#1a1a1a] outline-none transition-colors focus:border-[#6E3AFF]"
               >
                 {sortOptions.map((o) => (
                   <option key={o.id} value={o.id}>
@@ -206,7 +206,7 @@ export function Cursos() {
                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 className="overflow-hidden"
               >
-                <div className="mt-5 grid grid-cols-1 gap-6 rounded-[8px] border border-[#e5e5e5] bg-[#fafafa] p-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-5 grid grid-cols-1 gap-6 rounded-[10px] border border-[#e0e0e0] bg-[#fafafa] p-6 sm:grid-cols-2 lg:grid-cols-4">
                   {[
                     { label: "Centro de Ensino", value: centro, set: setCentro, opts: filters.centro },
                     { label: "Turno", value: turno, set: setTurno, opts: filters.turno },
@@ -222,7 +222,7 @@ export function Cursos() {
                           <button
                             key={o}
                             onClick={() => resetTo(f.set, o)}
-                            className={`rounded-[4px] border px-2.5 py-1.5 text-[12px] font-semibold transition-colors ${
+                            className={`rounded-[6px] border px-3 py-1.5 text-[12px] font-semibold transition-colors ${
                               f.value === o
                                 ? "border-[#6E3AFF] bg-[#6E3AFF] text-white"
                                 : "border-[#e5e5e5] bg-white text-[#1a1a1a]/65 hover:border-[#1a1a1a]/40"
@@ -255,12 +255,12 @@ export function Cursos() {
               )}
             </div>
 
-            <div className="flex items-center gap-1 rounded-[6px] border border-[#e5e5e5] p-1">
+            <div className="flex items-center gap-1 rounded-[6px] border border-[#d4d4d4] p-1">
               <button
                 onClick={() => setView("grid")}
                 aria-label="Visualizar em grade"
                 className={`flex h-8 w-8 items-center justify-center rounded-[4px] transition-colors ${
-                  view === "grid" ? "bg-[#6E3AFF] text-white" : "text-[#1a1a1a]/45 hover:text-[#1a1a1a]"
+                  view === "grid" ? "bg-[#6E3AFF] text-white" : "text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.05] hover:text-[#1a1a1a]"
                 }`}
               >
                 <LayoutGrid className="h-4 w-4" />
@@ -269,7 +269,7 @@ export function Cursos() {
                 onClick={() => setView("list")}
                 aria-label="Visualizar em lista"
                 className={`flex h-8 w-8 items-center justify-center rounded-[4px] transition-colors ${
-                  view === "list" ? "bg-[#6E3AFF] text-white" : "text-[#1a1a1a]/45 hover:text-[#1a1a1a]"
+                  view === "list" ? "bg-[#6E3AFF] text-white" : "text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.05] hover:text-[#1a1a1a]"
                 }`}
               >
                 <ListIcon className="h-4 w-4" />
@@ -311,7 +311,7 @@ export function Cursos() {
                   <motion.div whileHover={{ y: -4 }} className="h-full">
                     <Link
                       to={`/cursos/${c.slug}`}
-                      className="group flex h-full flex-col overflow-hidden rounded-[10px] border border-[#e5e5e5] bg-white shadow-[0_2px_8px_rgba(99,99,99,0.08)] transition-all hover:border-[#6E3AFF]/40 hover:shadow-[0_8px_24px_rgba(110,58,255,0.12)]"
+                      className="group flex h-full flex-col overflow-hidden rounded-[16px] border border-black/[0.06] bg-white shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_-12px_rgba(16,24,40,0.12)] transition-all duration-300 hover:border-[#6E3AFF]/30 hover:shadow-[0_2px_4px_rgba(16,24,40,0.04),0_20px_40px_-16px_rgba(110,58,255,0.28)]"
                     >
                       <div className="relative aspect-[16/10] overflow-hidden">
                         <ImageWithFallback
@@ -354,9 +354,9 @@ export function Cursos() {
                 <Reveal key={c.slug} delay={(i % 6) * 0.04}>
                   <Link
                     to={`/cursos/${c.slug}`}
-                    className="group flex items-center gap-5 overflow-hidden rounded-[10px] border border-[#e5e5e5] bg-white p-3 pr-5 shadow-[0_2px_8px_rgba(99,99,99,0.06)] transition-all hover:border-[#6E3AFF]/40 hover:shadow-[0_6px_18px_rgba(110,58,255,0.1)]"
+                    className="group flex items-center gap-5 overflow-hidden rounded-[16px] border border-black/[0.06] bg-white p-3 pr-5 shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_-12px_rgba(16,24,40,0.10)] transition-all duration-300 hover:border-[#6E3AFF]/30 hover:shadow-[0_2px_4px_rgba(16,24,40,0.04),0_16px_32px_-16px_rgba(110,58,255,0.25)]"
                   >
-                    <div className="h-24 w-32 shrink-0 overflow-hidden rounded-[7px]">
+                    <div className="h-24 w-32 shrink-0 overflow-hidden rounded-[12px]">
                       <ImageWithFallback
                         src={c.imagem}
                         alt={c.nome}
