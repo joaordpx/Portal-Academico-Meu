@@ -35,6 +35,39 @@ export interface DestaqueHero {
     ativo: boolean;
 }
 
+/* ─────────────── Eventos ─────────────── */
+
+export type EventoTipo = "Cultural" | "Acadêmico" | "Comunitário";
+
+/**
+ * Origem do registro:
+ * - "externo": importado da API de um sistema externo
+ * - "manual": cadastrado por um administrador no portal
+ * Em ambos os casos o evento ganha página de detalhe própria no portal.
+ */
+export type EventoOrigem = "externo" | "manual";
+
+/** Registro cru de um evento (espelha a futura tabela) */
+export interface Evento {
+    id: number;
+    slug: string; // rota /eventos/:slug
+    titulo: string;
+    descricao: string; // resumo exibido no card
+    conteudo?: string[]; // texto completo da página de detalhe (opcional)
+    tipo: EventoTipo;
+    data: string; // ISO (YYYY-MM-DD)
+    dataFim?: string; // ISO — eventos de vários dias
+    horario: string; // ex.: "19:30 - 21:30"
+    local: string; // ex.: "Auditório CCH — Prédio 2"
+    campus: string; // ex.: "Campus Montes Claros"
+    imagem: string;
+    origem: EventoOrigem;
+    organizador?: string;
+    /** Página oficial do evento (inscrição). Pode ser o único conteúdo, em cadastros de encaminhamento. */
+    linkOficial?: string;
+    inscricoesAbertas?: boolean;
+}
+
 /* ─────────────── Editais e Oportunidades ─────────────── */
 
 export type EditalStatus = "Aberto" | "Encerrado";
