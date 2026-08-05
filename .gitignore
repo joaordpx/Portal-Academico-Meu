@@ -17,6 +17,7 @@ coverage/
 # Documento interno de modelagem (rascunho de trabalho, não versionar)
 docs/modelo-dados.md
 docs/dados-necessarios-unidades.md
+docs/roadmap.md
 
 # Arquivos de ambiente (Senhas e segredos)
 .env
