@@ -68,7 +68,7 @@ src/
 │       ├── layout/             # Header, Footer, PageHeader, SectionLayout
 │       ├── shared/             # Reveal, SearchDialog, ImageWithFallback
 │       └── ui/                 # primitivas (Radix / shadcn)
-├── services/                   # acesso a dados (mock hoje, API depois)
+├── services/                   # acesso a dados
 ├── types/                      # tipos compartilhados
 ├── utils/                      # formatação de datas etc.
 ├── assets/                     # imagens
@@ -79,8 +79,7 @@ src/
 
 ## Padrão de dados
 
-Os dados hoje são **simulados**, mas organizados para que a integração com o backend seja uma troca
-de uma linha. O padrão tem dois níveis:
+O padrão tem dois níveis:
 
 - **Cru** — espelha a tabela do backend (ex.: `Curso`, `Evento`, `Local`)
 - **View** — derivado no serviço, com a formatação de apresentação (ex.: `CursoDetalheView`)
@@ -88,26 +87,13 @@ de uma linha. O padrão tem dois níveis:
 O banco guarda dados crus; a formatação (montar `"Graduação Bacharelado"`, `"4 anos"`, pares
 rótulo/valor) fica no frontend.
 
-Cada serviço expõe funções assíncronas com a chamada real comentada logo acima do mock:
-
-```ts
-export async function getCursos(): Promise<CursoResumo[]> {
-  // return fetchApi<CursoResumo[]>("/courses");
-  return cursos;
-}
-```
-
-Para integrar: descomente a linha do `fetchApi` e remova o mock. **Os componentes não mudam.**
-
-Componentes consomem os serviços via `useEffect` + `useState` — nunca com dados embutidos no JSX.
-
 ---
 
 ## Design system
 
 **Roxo `#6E3AFF`** é a cor estrutural: navegação, filtros, botões, estados ativos.
 
-As demais cores são **acentos semânticos**, nunca decoração:
+As demais cores são **acentos semânticos**:
 
 | Cor | Uso |
 |---|---|
@@ -143,35 +129,3 @@ Componentes de seção reutilizáveis (`src/app/components/layout/SectionLayout.
 | `/movimento-estudantil-lazer` | DCE, centros acadêmicos, esporte, reservas |
 | `/unidades-localizacao` | Campus, demais unidades, organograma |
 | `/ajuda-suporte` | Como usar, FAQ, problemas de acesso, glossário, contato |
-
----
-
-## Fluxo de trabalho
-
-Uma branch por tela ou refatoração, integrada à `main` por pull request:
-
-```bash
-git checkout main && git pull origin main
-```
-
-```bash
-git checkout -b nome-da-tela
-```
-
-Ajustes pontuais de um arquivo podem ir direto na `main`.
-
-**Convenção de commit:** `feat:`, `style:`, `refactor:`, `chore:` seguidos de descrição no
-infinitivo, em português.
-
----
-
-## Estado atual
-
-Todas as telas estão implementadas com dados simulados. Em aberto:
-
-- Integração com o backend Laravel
-- Conteúdo real (contatos, prédios, documentos)
-- Busca funcional — hoje a barra de busca das seções ainda não filtra
-- Painel para alimentação de conteúdo
-
-O planejamento detalhado, com riscos e roadmap por fases, está em `docs/roadmap.md`.
