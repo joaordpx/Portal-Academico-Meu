@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight, ExternalLink, Image as ImageIcon, Info } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ExternalLink, Image as ImageIcon, Info } from "lucide-react";
 import { Reveal } from "../shared/Reveal";
 
 type Section = {
@@ -295,6 +295,69 @@ export function PanelRedirect({
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </span>
       </a>
+    </div>
+  );
+}
+
+/* Helper: lista expansível (acordeão) para perguntas e blocos de conteúdo */
+export function PanelAccordion({
+  intro,
+  itens,
+}: {
+  intro?: string;
+  itens: { titulo: string; conteudo: ReactNode }[];
+}) {
+  const [aberto, setAberto] = useState<number | null>(null);
+
+  return (
+    <div>
+      {intro && (
+        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
+      )}
+      <div className="mt-8 flex flex-col gap-2.5">
+        {itens.map((item, i) => {
+          const ativo = aberto === i;
+          return (
+            <div
+              key={item.titulo}
+              className={`overflow-hidden rounded-[8px] border transition-colors ${
+                ativo ? "border-[#6E3AFF]/40" : "border-[#e5e5e5]"
+              }`}
+            >
+              <button
+                onClick={() => setAberto(ativo ? null : i)}
+                aria-expanded={ativo}
+                className="flex w-full cursor-pointer items-center justify-between gap-4 bg-white px-5 py-4 text-left transition-colors hover:bg-[#fafafa]"
+              >
+                <span className="text-[14.5px] font-bold tracking-[-0.01em] text-[#1a1a1a]">
+                  {item.titulo}
+                </span>
+                <ChevronDown
+                  className={`h-4 w-4 shrink-0 text-[#1a1a1a]/45 transition-transform duration-200 ${
+                    ativo ? "rotate-180 text-[#6E3AFF]" : ""
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence initial={false}>
+                {ativo && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="border-t border-[#e5e5e5] bg-[#fafafa] px-5 py-4 text-[14px] leading-[1.6] text-[#1a1a1a]/75">
+                      {item.conteudo}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
