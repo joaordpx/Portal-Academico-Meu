@@ -11,7 +11,7 @@ import { EventoDetalhe } from "./pages/EventoDetalhe";
 import { AssistenciaEstudantil } from "./pages/AssistenciaEstudantil";
 import { MovimentoEstudantil } from "./pages/MovimentoEstudantil";
 import { UnidadesLocalizacao } from "./pages/UnidadesLocalizacao";
-import { Contato } from "./pages/Contato";
+import { AjudaSuporte } from "./pages/AjudaSuporte";
 import { NotFound } from "./pages/NotFound";
 
 export const router = createBrowserRouter([
@@ -30,7 +30,9 @@ export const router = createBrowserRouter([
       { path: "assistencia-estudantil", Component: AssistenciaEstudantil },
       { path: "movimento-estudantil-lazer", Component: MovimentoEstudantil },
       { path: "unidades-localizacao", Component: UnidadesLocalizacao },
-      { path: "contato", Component: Contato },
+      { path: "ajuda-suporte", Component: AjudaSuporte },
+      // Rota antiga mantida: os links existentes para /contato continuam válidos
+      { path: "contato", Component: AjudaSuporte },
       { path: "*", Component: NotFound },
     ],
   },
