@@ -35,6 +35,95 @@ export interface DestaqueHero {
     ativo: boolean;
 }
 
+/* ─────────────── Unidades e Localização ─────────────── */
+
+export type LocalTipo =
+    | "Salas de aula"
+    | "Administrativo"
+    | "Biblioteca"
+    | "Laboratório"
+    | "Alimentação"
+    | "Esportivo"
+    | "Serviço";
+
+/** Centro de ensino sediado no prédio (vínculo estável, ao contrário das turmas) */
+export interface CentroEnsino {
+    sigla: string; // CCET
+    nome: string; // Centro de Ciências Exatas e Tecnológicas
+}
+
+/** Faixa de horário de funcionamento — vários registros p/ RU, biblioteca etc. */
+export interface HorarioFuncionamento {
+    dias: string; // "Segunda a sexta"
+    horas: string; // "08h às 18h"
+    rotulo?: string; // "Almoço", "Jantar", "Café da manhã"
+}
+
+export interface Contato {
+    telefone?: string;
+    email?: string;
+    ramal?: string;
+}
+
+/** Outro campus da universidade */
+export interface Unidade {
+    slug: string;
+    nome: string;
+    cidade: string;
+    regiao?: string;
+    endereco?: string;
+    contato: Contato;
+    horarios: HorarioFuncionamento[];
+    cursos: string[];
+    servicos: string[];
+    mapsUrl?: string;
+}
+
+export interface Acessibilidade {
+    rampa: boolean;
+    elevador: boolean;
+    banheiroAdaptado: boolean;
+    pisoTatil: boolean;
+    vagaEspecial?: boolean;
+}
+
+/**
+ * Local do campus (prédio, setor, serviço...).
+ *
+ * `svgId` amarra o registro ao <path> correspondente na planta do campus —
+ * quando o SVG existir, o mapa vira apenas uma camada de apresentação sobre
+ * estes mesmos dados. `coordenadas` alimentam o botão "Como chegar".
+ */
+export interface Local {
+    id: number;
+    slug: string;
+    nome: string; // ex.: "Prédio 1"
+    numero?: number; // prédios são numerados (1 a 13)
+    tipo: LocalTipo;
+    campus: string; // preparado para multi-campus
+    descricao: string;
+    /** Centro de ensino sediado no prédio — vínculo estável */
+    centro?: CentroEnsino;
+    /**
+     * Cursos vinculados ao centro. NÃO indica onde as aulas acontecem:
+     * turmas mudam de prédio a cada semestre. Serve para o estudante
+     * identificar o prédio do seu centro.
+     */
+    cursosDoCentro: string[];
+    /** Setores administrativos que funcionam no local */
+    setores: string[];
+    /** Serviços disponíveis (biblioteca, cantina, laboratórios...) */
+    servicos: string[];
+    acessibilidade: Acessibilidade;
+    /** Localização interna, ex.: "Prédio 7 · Sala 101" */
+    localizacao?: string;
+    contato: Contato;
+    horarios: HorarioFuncionamento[];
+    coordenadas?: { lat: number; lng: number };
+    svgId?: string; // id do <path> na planta do campus
+    foto?: string;
+}
+
 /* ─────────────── Eventos ─────────────── */
 
 export type EventoTipo = "Cultural" | "Acadêmico" | "Comunitário";
