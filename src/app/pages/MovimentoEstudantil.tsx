@@ -1,6 +1,11 @@
-import { Megaphone } from "lucide-react";
+import { Megaphone, Instagram } from "lucide-react";
 import { PageHeader } from "../components/layout/PageHeader";
-import { SectionLayout, PanelCardGrid } from "../components/layout/SectionLayout";
+import {
+  SectionLayout,
+  PanelLinks,
+  PanelRelated,
+  PanelNote,
+} from "../components/layout/SectionLayout";
 
 const popular = [
   { label: "DCE" },
@@ -22,69 +27,121 @@ const sections = [
     id: "dce",
     label: "DCE",
     content: (
-      <PanelCardGrid
-        intro="Diretório Central dos Estudantes — representação política e canais oficiais de participação."
-        cards={[
-          { title: "Sobre o DCE", desc: "Estrutura, gestões anteriores e papel na universidade." },
-          { title: "Contatos e canais oficiais", desc: "WhatsApp, e-mail e atendimento presencial." },
-          { title: "Formas de participação", desc: "Como entrar em comissões e grupos de trabalho." },
-          { title: "Redes sociais do DCE", desc: "Instagram, Facebook e canal de comunicação." },
-        ]}
-      />
+      <>
+        <PanelLinks
+          intro="Consulte informações sobre o Diretório Central dos Estudantes, canais oficiais de contato e formas de participação estudantil."
+          links={[
+            {
+              label: "Sobre o DCE",
+              desc: "O que é o Diretório Central dos Estudantes e como atua.",
+            },
+            { label: "Contatos e canais oficiais", desc: "Onde falar com a gestão do DCE." },
+            { label: "Formas de participação", desc: "Como participar das ações e da gestão." },
+          ]}
+        />
+        <PanelRelated
+          links={[
+            { label: "Centros Acadêmicos", to: "/movimento-estudantil-lazer" },
+            { label: "Esporte e Lazer", to: "/movimento-estudantil-lazer" },
+            { label: "Assistência Estudantil", to: "/assistencia-estudantil" },
+            { label: "Ajuda e Suporte", to: "/contato" },
+          ]}
+        />
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center gap-2 rounded-[6px] bg-[#1a1a1a] px-5 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#6E3AFF]"
+        >
+          <Instagram className="h-4 w-4" /> Redes sociais do DCE
+        </a>
+      </>
     ),
   },
   {
-    id: "centros",
+    id: "centros-academicos",
     label: "Centros Acadêmicos",
     content: (
-      <PanelCardGrid
-        intro="Cada curso possui um Centro Acadêmico que representa os estudantes localmente."
-        cards={[
-          { title: "CA de Direito", desc: "Eventos, semana acadêmica e mobilização discente." },
-          { title: "CA de Pedagogia", desc: "Atividades formativas e culturais." },
-          { title: "CA de Sistemas de Informação", desc: "Hackathons, palestras técnicas e mentorias." },
-          { title: "Lista completa", desc: "Todos os centros acadêmicos da Unimontes." },
-        ]}
-      />
+      <>
+        <PanelLinks
+          intro="Conheça os Centros Acadêmicos dos cursos, contatos e formas de participação estudantil."
+          links={[
+            {
+              label: "Centros Acadêmicos dos cursos",
+              desc: "Lista dos CAs por curso e centro de ensino.",
+            },
+            { label: "Contatos", desc: "Canais de contato de cada Centro Acadêmico." },
+            { label: "Formas de participação", desc: "Como se envolver com o CA do seu curso." },
+          ]}
+        />
+        <PanelRelated
+          links={[
+            { label: "DCE", to: "/movimento-estudantil-lazer" },
+            { label: "Cursos", to: "/cursos" },
+            { label: "Ajuda e Suporte", to: "/contato" },
+          ]}
+        />
+      </>
     ),
   },
   {
-    id: "esporte",
+    id: "esporte-lazer",
     label: "Esporte e Lazer",
     content: (
-      <PanelCardGrid
-        intro="Centro esportivo, atléticas e atividades recreativas no campus."
-        cards={[
-          { title: "Centro Esportivo", desc: "Quadras, academia, piscina e pista de atletismo." },
-          { title: "Atléticas", desc: "Times universitários — futebol, vôlei, basquete, handebol." },
-          { title: "JIUs", desc: "Jogos Internos da Unimontes — calendário e inscrições." },
-          { title: "Eventos esportivos", desc: "Calendário de competições intercursos." },
-        ]}
-      />
+      <>
+        <PanelLinks
+          intro="Acesse informações sobre atividades esportivas, atléticas, lazer, programação e centro esportivo."
+          links={[
+            { label: "Atividades esportivas", desc: "Modalidades e treinos abertos aos estudantes." },
+            { label: "Lazer e programação", desc: "Agenda de atividades de convivência e lazer." },
+            { label: "Centro esportivo", desc: "Estrutura esportiva e horários de uso." },
+            { label: "Atléticas", desc: "Associações atléticas dos cursos." },
+          ]}
+        />
+        <PanelRelated
+          links={[
+            { label: "Reserva de Espaços", to: "/movimento-estudantil-lazer" },
+            { label: "Cursos", to: "/cursos" },
+            { label: "Ajuda e Suporte", to: "/contato" },
+          ]}
+        />
+      </>
     ),
   },
   {
-    id: "reservas",
+    id: "reserva-espacos",
     label: "Reserva de Espaços",
     content: (
-      <PanelCardGrid
-        intro="Reserve auditórios, salas, quadras e espaços de convivência para atividades estudantis."
-        cards={[
-          { title: "Auditórios", desc: "Reserva online com até 7 dias de antecedência." },
-          { title: "Salas de reunião", desc: "Espaços para grupos de estudo e CAs." },
-          { title: "Quadras esportivas", desc: "Reserva por horário no centro esportivo." },
-          { title: "Praça de Convivência", desc: "Solicitação para eventos abertos ao público." },
-        ]}
-      />
+      <>
+        <PanelNote>
+          <strong className="font-bold">Importante:</strong> a disponibilidade de espaços está
+          sujeita à validação institucional e à disponibilidade do calendário.
+        </PanelNote>
+        <PanelLinks
+          intro="Solicite reserva de quadras, piscina, auditórios e outros espaços da universidade."
+          links={[
+            { label: "Reserva de quadras", desc: "Quadras poliesportivas do campus." },
+            { label: "Piscina", desc: "Uso da piscina e horários disponíveis." },
+            { label: "Auditórios", desc: "Auditórios para eventos e atividades acadêmicas." },
+            { label: "Outros espaços", desc: "Salas, laboratórios e áreas de convivência." },
+          ]}
+        />
+        <PanelRelated
+          links={[
+            { label: "Esporte e Lazer", to: "/movimento-estudantil-lazer" },
+            { label: "Unidades e Localização", to: "/unidades-localizacao" },
+            { label: "Ajuda e Suporte", to: "/contato" },
+          ]}
+        />
+      </>
     ),
   },
 ];
 
 const related = [
-  { label: "Centros Acadêmicos", to: "/movimento-estudantil-lazer" },
-  { label: "Esporte e Lazer", to: "/movimento-estudantil-lazer" },
+  { label: "Eventos", to: "/eventos" },
   { label: "Assistência Estudantil", to: "/assistencia-estudantil" },
-  { label: "Ajuda e Suporte", to: "/contato" },
+  { label: "Unidades e Localização", to: "/unidades-localizacao" },
 ];
 
 export function MovimentoEstudantil() {
@@ -92,8 +149,8 @@ export function MovimentoEstudantil() {
     <>
       <PageHeader
         eyebrow="Movimento Estudantil e Lazer"
-        title="Representação, esporte e vida em comunidade."
-        description="DCE, Centros Acadêmicos, atléticas, esporte, lazer e reserva de espaços."
+        title="Representação, esporte e vida no campus."
+        description="Encontre informações sobre representação estudantil, Centros Acadêmicos, esporte, lazer e reserva de espaços."
         icon={Megaphone}
       />
       <SectionLayout
