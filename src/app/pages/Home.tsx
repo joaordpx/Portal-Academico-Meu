@@ -236,16 +236,16 @@ function HeroIntro({ destaque }: { destaque: DestaqueHero | null }) {
 
 function AtalhosRapidos() {
   const items = [
-    { icon: LayoutDashboard, label: "WebGiz" },
-    { icon: CalendarDays, label: "Calendário Acadêmico" },
-    { icon: UtensilsCrossed, label: "Restaurante Universitário" },
-    { icon: ScrollText, label: "Editais" },
-    { icon: FileSignature, label: "Documentos & Requerimentos" },
-    { icon: GraduationCap, label: "Cursos" },
-    { icon: BriefcaseBusiness, label: "Estágios" },
-    { icon: BookMarked, label: "Biblioteca" },
-    { icon: HeartPulse, label: "Assistência Estudantil" },
-    { icon: LifeBuoy, label: "Ajuda & Suporte" },
+    { icon: LayoutDashboard, label: "WebGiz", to: "/servicos-documentos" },
+    { icon: CalendarDays, label: "Calendário Acadêmico", to: "/vida-academica" },
+    { icon: UtensilsCrossed, label: "Restaurante Universitário", to: "/assistencia-estudantil" },
+    { icon: ScrollText, label: "Editais", to: "/editais-oportunidades" },
+    { icon: FileSignature, label: "Documentos & Requerimentos", to: "/servicos-documentos" },
+    { icon: GraduationCap, label: "Cursos", to: "/cursos" },
+    { icon: BriefcaseBusiness, label: "Estágios", to: "/editais-oportunidades" },
+    { icon: BookMarked, label: "Biblioteca", to: "/vida-academica" },
+    { icon: HeartPulse, label: "Assistência Estudantil", to: "/assistencia-estudantil" },
+    { icon: LifeBuoy, label: "Ajuda & Suporte", to: "/ajuda-suporte" },
   ];
   return (
     <section className="bg-white py-24 lg:py-32">
@@ -273,18 +273,23 @@ function AtalhosRapidos() {
             const n = String(i + 1).padStart(2, "0");
             return (
               <Reveal key={it.label} delay={(i % 5) * 0.04}>
-                <motion.button whileHover={{ y: -2 }} className="group flex h-full min-h-[180px] w-full flex-col justify-between border-b border-r border-[#e5e5e5] bg-white p-6 text-left transition-colors hover:bg-[#fafafa]">
-                  <div className="flex items-start justify-between">
-                    <Icon className="h-6 w-6 text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]" strokeWidth={1.5} />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">{n}</span>
-                  </div>
-                  <div>
-                    <div className="text-[15px] font-bold leading-[1.2] tracking-[-0.015em] text-[#1a1a1a]">{it.label}</div>
-                    <div className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40 transition-colors group-hover:text-[#6E3AFF]">
-                      Abrir <ArrowUpRight className="h-3 w-3" />
+                <motion.div whileHover={{ y: -2 }} className="h-full">
+                  <Link
+                    to={it.to}
+                    className="group flex h-full min-h-[180px] w-full cursor-pointer flex-col justify-between border-b border-r border-[#e5e5e5] bg-white p-6 text-left transition-colors hover:bg-[#fafafa]"
+                  >
+                    <div className="flex items-start justify-between">
+                      <Icon className="h-6 w-6 text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]" strokeWidth={1.5} />
+                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">{n}</span>
                     </div>
-                  </div>
-                </motion.button>
+                    <div>
+                      <div className="text-[15px] font-bold leading-[1.2] tracking-[-0.015em] text-[#1a1a1a]">{it.label}</div>
+                      <div className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40 transition-colors group-hover:text-[#6E3AFF]">
+                        Abrir <ArrowUpRight className="h-3 w-3" />
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
               </Reveal>
             );
           })}
