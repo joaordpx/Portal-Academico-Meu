@@ -299,6 +299,16 @@ export function PanelRedirect({
   );
 }
 
+/* Helper: aviso informativo dentro de uma seção */
+export function PanelNote({ children }: { children: ReactNode }) {
+  return (
+    <div className="mt-8 flex items-start gap-3 rounded-[8px] border border-[#2563EB]/20 bg-[#2563EB]/[0.06] p-4">
+      <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#2563EB]" />
+      <p className="text-[14px] leading-[1.55] text-[#1a1a1a]/80">{children}</p>
+    </div>
+  );
+}
+
 /* Helper: bloco "Links relacionados" (links azuis) dentro de uma seção */
 export function PanelRelated({
   links,

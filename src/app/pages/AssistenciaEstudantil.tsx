@@ -1,6 +1,6 @@
 import { HeartHandshake } from "lucide-react";
 import { PageHeader } from "../components/layout/PageHeader";
-import { SectionLayout, PanelCardGrid } from "../components/layout/SectionLayout";
+import { SectionLayout, PanelLinks, PanelRelated } from "../components/layout/SectionLayout";
 
 const popular = [
   { label: "Auxílios e Permanência" },
@@ -23,84 +23,138 @@ const sections = [
     id: "auxilios",
     label: "Auxílios e Permanência",
     content: (
-      <PanelCardGrid
-        intro="Programas, auxílios e serviços que apoiam a permanência do estudante no ensino superior."
-        cards={[
-          { title: "Auxílios", desc: "Alimentação, transporte, moradia e auxílio emergencial." },
-          { title: "Permanência", desc: "Acompanhamento socioeducacional para estudantes em vulnerabilidade." },
-          { title: "PEAES", desc: "Programa Estadual de Assistência Estudantil — inscrições por edital." },
-          { title: "Moradia Estudantil", desc: "Vagas em alojamento institucional ou auxílio-moradia." },
-        ]}
-      />
+      <>
+        <PanelLinks
+          intro="Consulte programas, auxílios, serviços e orientações que apoiam a permanência do estudante na universidade."
+          links={[
+            { label: "Auxílios", desc: "Alimentação, transporte, moradia e auxílio emergencial." },
+            { label: "Permanência", desc: "Acompanhamento socioeducacional durante o curso." },
+            {
+              label: "PEAES",
+              desc: "Programa Estadual de Assistência Estudantil — inscrições por edital.",
+            },
+            { label: "Moradia Estudantil", desc: "Alojamento institucional e auxílio-moradia." },
+          ]}
+        />
+        <PanelRelated
+          links={[
+            { label: "Editais e Oportunidades", to: "/editais-oportunidades" },
+            { label: "Documentos e Requerimentos", to: "/servicos-documentos" },
+            { label: "Ajuda e Suporte", to: "/contato" },
+            { label: "Unidades e Localização", to: "/unidades-localizacao" },
+          ]}
+        />
+      </>
     ),
   },
   {
     id: "ru",
     label: "Restaurante Universitário",
     content: (
-      <PanelCardGrid
-        intro="Refeições subsidiadas para estudantes regularmente matriculados."
-        cards={[
-          { title: "Cardápio da semana", desc: "Café, almoço e jantar consultáveis pelo app." },
-          { title: "Horários", desc: "Café 7h–9h · Almoço 11h–14h · Jantar 17h–19h30." },
-          { title: "Valores subsidiados", desc: "Refeições a partir de R$ 2,00 para alunos cadastrados." },
-          { title: "Saldo & recarga", desc: "Consulte saldo e recarregue créditos online." },
-        ]}
-      />
+      <>
+        <PanelLinks
+          intro="Informações sobre o Restaurante Universitário: horários, cadastro, cardápio e normas de utilização."
+          links={[
+            {
+              label: "Normas e horário de funcionamento",
+              desc: "Regras de uso e horários de cada refeição.",
+            },
+            { label: "Como se cadastrar", desc: "Passo a passo para liberar o acesso ao RU." },
+            { label: "Cardápio semanal", desc: "Refeições servidas ao longo da semana." },
+            { label: "Localização", desc: "Onde fica o RU em cada campus." },
+          ]}
+        />
+        <PanelRelated
+          links={[
+            { label: "Auxílios e Permanência", to: "/assistencia-estudantil" },
+            { label: "Unidades e Localização", to: "/unidades-localizacao" },
+            { label: "Ajuda e Suporte", to: "/contato" },
+          ]}
+        />
+      </>
     ),
   },
   {
     id: "saude",
     label: "Saúde e Bem-estar",
     content: (
-      <PanelCardGrid
-        intro="Serviços de saúde física e mental disponíveis à comunidade acadêmica."
-        cards={[
-          { title: "Apoio psicológico", desc: "Atendimento individual gratuito por agendamento." },
-          { title: "Posto de saúde", desc: "Triagem, primeiros socorros e orientações." },
-          { title: "Saúde da mulher", desc: "Atendimento especializado em parceria com cursos da saúde." },
-          { title: "Atividade física", desc: "Programas de prevenção e qualidade de vida." },
-        ]}
-      />
+      <>
+        <PanelLinks
+          intro="Acesse serviços de saúde, apoio psicológico, atendimento odontológico e grupos de apoio."
+          links={[
+            { label: "Apoio Psicológico", desc: "Atendimento e acolhimento psicológico ao estudante." },
+            { label: "Atendimento Odontológico", desc: "Serviços da clínica odontológica." },
+            { label: "Posto de Atendimento à Saúde", desc: "Primeiros atendimentos no campus." },
+            { label: "Grupos de Apoio", desc: "Rodas de conversa e grupos temáticos." },
+          ]}
+        />
+        <PanelRelated
+          links={[
+            { label: "Acessibilidade e Inclusão", to: "/assistencia-estudantil" },
+            { label: "Unidades e Localização", to: "/unidades-localizacao" },
+            { label: "Ajuda e Suporte", to: "/contato" },
+          ]}
+        />
+      </>
     ),
   },
   {
     id: "acessibilidade",
     label: "Acessibilidade e Inclusão",
     content: (
-      <PanelCardGrid
-        intro="NUSI — Núcleo de Suporte à Inclusão acompanha estudantes com necessidades específicas."
-        cards={[
-          { title: "Atendimento NUSI", desc: "Apoio acadêmico, pedagógico e psicossocial." },
-          { title: "Acessibilidade arquitetônica", desc: "Mapeamento e adequações em blocos e laboratórios." },
-          { title: "Tecnologia assistiva", desc: "Empréstimo de equipamentos e softwares." },
-          { title: "Diversidade & direitos", desc: "Coletivos, comissões e canais de acolhimento." },
-        ]}
-      />
+      <>
+        <PanelLinks
+          intro="Conheça o NUSI, recursos de acessibilidade, orientações e suporte para necessidades educacionais específicas."
+          links={[
+            { label: "NUSI", desc: "Núcleo de Sociedade Inclusiva — apoio e acompanhamento." },
+            {
+              label: "Necessidades Educacionais Específicas",
+              desc: "Atendimento especializado e adaptações.",
+            },
+            { label: "Recursos de Acessibilidade", desc: "Materiais, tecnologias e apoio técnico." },
+            { label: "Orientações", desc: "Como solicitar apoio e acompanhamento." },
+          ]}
+        />
+        <PanelRelated
+          links={[
+            { label: "Saúde e Bem-estar", to: "/assistencia-estudantil" },
+            { label: "Direitos do Estudante", to: "/assistencia-estudantil" },
+            { label: "Ajuda e Suporte", to: "/contato" },
+          ]}
+        />
+      </>
     ),
   },
   {
     id: "direitos",
     label: "Direitos do Estudante",
     content: (
-      <PanelCardGrid
-        intro="Informações sobre direitos, regimentos e canais de denúncia."
-        cards={[
-          { title: "Carta de Direitos", desc: "Documento institucional com direitos e deveres." },
-          { title: "Ouvidoria", desc: "Canal para denúncias, sugestões e reclamações." },
-          { title: "Defensoria Pública", desc: "Convênios de orientação jurídica gratuita." },
-          { title: "Comissão de Ética", desc: "Apuração de condutas no ambiente acadêmico." },
-        ]}
-      />
+      <>
+        <PanelLinks
+          intro="Conheça seus direitos, normas, orientações, canais de atendimento e perguntas frequentes."
+          links={[
+            { label: "Normas", desc: "Regulamentos que asseguram os direitos do estudante." },
+            { label: "Orientações", desc: "Como proceder em situações comuns." },
+            { label: "Canais de Atendimento", desc: "Onde buscar apoio institucional." },
+            { label: "Perguntas Frequentes", desc: "Respostas às dúvidas mais comuns." },
+          ]}
+        />
+        <PanelRelated
+          links={[
+            { label: "Auxílios e Permanência", to: "/assistencia-estudantil" },
+            { label: "Acessibilidade e Inclusão", to: "/assistencia-estudantil" },
+            { label: "Ajuda e Suporte", to: "/contato" },
+          ]}
+        />
+      </>
     ),
   },
 ];
 
 const related = [
   { label: "Editais e Oportunidades", to: "/editais-oportunidades" },
-  { label: "Documentos e Requerimentos", to: "/servicos-documentos" },
-  { label: "Ajuda e Suporte", to: "/contato" },
   { label: "Unidades e Localização", to: "/unidades-localizacao" },
+  { label: "Ajuda e Suporte", to: "/contato" },
 ];
 
 export function AssistenciaEstudantil() {
@@ -108,8 +162,8 @@ export function AssistenciaEstudantil() {
     <>
       <PageHeader
         eyebrow="Assistência Estudantil"
-        title="Apoio para você permanecer e prosperar."
-        description="Auxílios, permanência, saúde, acessibilidade, inclusão, restaurante universitário e direitos do estudante."
+        title="Apoio para você seguir estudando."
+        description="Encontre informações sobre auxílios, permanência, saúde, acessibilidade, inclusão, restaurante universitário e direitos do estudante."
         icon={HeartHandshake}
       />
       <SectionLayout
