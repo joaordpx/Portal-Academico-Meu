@@ -5,7 +5,6 @@ import {
   MapPin,
   Search,
   X,
-  Building2,
   Map as MapIcon,
   Navigation,
   Clock,
@@ -834,8 +833,7 @@ function Organograma() {
       </h2>
       <p className="mt-2 max-w-3xl text-[15px] leading-[1.6] text-[#1a1a1a]/65">
         Conheça a estrutura organizacional da Universidade, incluindo conselhos, reitoria,
-        pró-reitorias, centros de ensino, diretorias e setores de apoio acadêmico e
-        administrativo.
+        pró-reitorias, centros de ensino, diretorias e setores de apoio acadêmico e administrativo.
       </p>
 
       {/* Estrutura geral */}

@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import {
   Instagram,
   Facebook,
@@ -45,11 +44,23 @@ const sitemap = [
   },
   {
     title: "Serviços e Documentos",
-    links: ["Documentos acadêmicos", "Requerimentos", "Formulários", "Protocolos e Prazos", "Sistemas Acadêmicos"],
+    links: [
+      "Documentos acadêmicos",
+      "Requerimentos",
+      "Formulários",
+      "Protocolos e Prazos",
+      "Sistemas Acadêmicos",
+    ],
   },
   {
     title: "Editais e Oportunidades",
-    links: ["Editais", "Estágios", "Bolsas e Monitorias", "Eventos e Cursos", "Pesquisa e Extensão"],
+    links: [
+      "Editais",
+      "Estágios",
+      "Bolsas e Monitorias",
+      "Eventos e Cursos",
+      "Pesquisa e Extensão",
+    ],
   },
   {
     title: "Assistência Estudantil",
@@ -57,7 +68,14 @@ const sitemap = [
   },
   {
     title: "Movimento Estudantil e Lazer",
-    links: ["DCE", "Centros Acadêmicos", "Atléticas", "Eventos", "Esporte e Lazer", "Reserva de Espaços"],
+    links: [
+      "DCE",
+      "Centros Acadêmicos",
+      "Atléticas",
+      "Eventos",
+      "Esporte e Lazer",
+      "Reserva de Espaços",
+    ],
   },
   {
     title: "Unidades e Localização",
@@ -65,7 +83,13 @@ const sitemap = [
   },
   {
     title: "Ajuda e Suporte",
-    links: ["Como usar o portal", "Perguntas Frequentes (FAQ)", "Problemas de Acesso", "Glossário de Siglas", "Fale com a UNIMONTES"],
+    links: [
+      "Como usar o portal",
+      "Perguntas Frequentes (FAQ)",
+      "Problemas de Acesso",
+      "Glossário de Siglas",
+      "Fale com a UNIMONTES",
+    ],
   },
 ];
 
@@ -154,19 +178,39 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
         <div className="grid grid-cols-1 gap-8 border-t border-[#e5e5e5] py-10 text-[13px] text-[#1a1a1a]/60 lg:grid-cols-4">
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40">Endereço</div>
-            <div className="mt-2">Av. Prof. Rui Braga, s/n<br />Vila Mauricéia · Montes Claros/MG</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40">
+              Endereço
+            </div>
+            <div className="mt-2">
+              Av. Prof. Rui Braga, s/n
+              <br />
+              Vila Mauricéia · Montes Claros/MG
+            </div>
           </div>
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40">Contato</div>
-            <div className="mt-2">(38) 3229-8000<br />secretaria@unimontes.br</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40">
+              Contato
+            </div>
+            <div className="mt-2">
+              (38) 3229-8000
+              <br />
+              secretaria@unimontes.br
+            </div>
           </div>
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40">Atendimento</div>
-            <div className="mt-2">Segunda a sexta<br />8h às 18h</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40">
+              Atendimento
+            </div>
+            <div className="mt-2">
+              Segunda a sexta
+              <br />
+              8h às 18h
+            </div>
           </div>
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40">Redes</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40">
+              Redes
+            </div>
             <div className="mt-3 flex gap-2">
               {[Instagram, Facebook, Youtube, Linkedin].map((Icon, i) => (
                 <a
@@ -185,9 +229,15 @@ export function Footer() {
           <div className="font-bold text-[#1a1a1a]">UNIMONTES · Portal Acadêmico</div>
           <div>© 2026 — Universidade Estadual de Montes Claros</div>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-[#6E3AFF]">Privacidade</a>
-            <a href="#" className="hover:text-[#6E3AFF]">Termos</a>
-            <a href="#" className="hover:text-[#6E3AFF]">Acessibilidade</a>
+            <a href="#" className="hover:text-[#6E3AFF]">
+              Privacidade
+            </a>
+            <a href="#" className="hover:text-[#6E3AFF]">
+              Termos
+            </a>
+            <a href="#" className="hover:text-[#6E3AFF]">
+              Acessibilidade
+            </a>
           </div>
         </div>
       </div>

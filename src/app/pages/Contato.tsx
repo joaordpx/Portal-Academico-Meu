@@ -38,8 +38,18 @@ export function Contato() {
               <div className="divide-y divide-[#e5e5e5] border-y border-[#e5e5e5]">
                 {[
                   { icon: Phone, l: "Telefone", v: "(38) 3229-8000", s: "Seg–Sex · 8h às 18h" },
-                  { icon: Mail, l: "E-mail", v: "secretaria@unimontes.br", s: "Resposta em até 48h" },
-                  { icon: MapPin, l: "Endereço", v: "Av. Prof. Rui Braga, s/n", s: "Vila Mauricéia · Montes Claros/MG" },
+                  {
+                    icon: Mail,
+                    l: "E-mail",
+                    v: "secretaria@unimontes.br",
+                    s: "Resposta em até 48h",
+                  },
+                  {
+                    icon: MapPin,
+                    l: "Endereço",
+                    v: "Av. Prof. Rui Braga, s/n",
+                    s: "Vila Mauricéia · Montes Claros/MG",
+                  },
                 ].map((c) => {
                   const Icon = c.icon;
                   return (
@@ -50,8 +60,12 @@ export function Contato() {
                     >
                       <Icon className="mt-1 h-5 w-5 text-[#6E3AFF]" strokeWidth={1.75} />
                       <div>
-                        <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/50">{c.l}</div>
-                        <div className="mt-2 text-[22px] font-bold tracking-[-0.02em] text-[#1a1a1a]">{c.v}</div>
+                        <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/50">
+                          {c.l}
+                        </div>
+                        <div className="mt-2 text-[22px] font-bold tracking-[-0.02em] text-[#1a1a1a]">
+                          {c.v}
+                        </div>
                         <div className="mt-1 text-[13px] text-[#1a1a1a]/60">{c.s}</div>
                       </div>
                     </motion.div>
@@ -61,7 +75,10 @@ export function Contato() {
             </Reveal>
 
             <Reveal delay={0.1} className="lg:col-span-3">
-              <form onSubmit={submit} className="rounded-[4px] border border-[#e5e5e5] bg-white p-8 lg:p-12">
+              <form
+                onSubmit={submit}
+                className="rounded-[4px] border border-[#e5e5e5] bg-white p-8 lg:p-12"
+              >
                 <div className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.18em] text-[#6E3AFF]">
                   <span className="h-px w-10 bg-[#6E3AFF]" />
                   Formulário
@@ -69,20 +86,40 @@ export function Contato() {
                 <h2 className="mt-5 text-balance text-[32px] font-bold leading-[1] tracking-[-0.03em] text-[#1a1a1a] lg:text-[40px]">
                   Envie sua mensagem.
                 </h2>
-                <p className="mt-3 text-[14px] text-[#1a1a1a]/60">Preenchimento em menos de 1 minuto.</p>
+                <p className="mt-3 text-[14px] text-[#1a1a1a]/60">
+                  Preenchimento em menos de 1 minuto.
+                </p>
 
                 <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                  <Field label="Nome completo *" value={form.nome} onChange={(v) => setForm({ ...form, nome: v })} placeholder="Seu nome" />
-                  <Field label="E-mail *" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} placeholder="voce@email.com" />
+                  <Field
+                    label="Nome completo *"
+                    value={form.nome}
+                    onChange={(v) => setForm({ ...form, nome: v })}
+                    placeholder="Seu nome"
+                  />
+                  <Field
+                    label="E-mail *"
+                    type="email"
+                    value={form.email}
+                    onChange={(v) => setForm({ ...form, email: v })}
+                    placeholder="voce@email.com"
+                  />
                 </div>
 
                 <div className="mt-5">
-                  <Field label="Assunto" value={form.assunto} onChange={(v) => setForm({ ...form, assunto: v })} placeholder="Sobre o que você quer falar?" />
+                  <Field
+                    label="Assunto"
+                    value={form.assunto}
+                    onChange={(v) => setForm({ ...form, assunto: v })}
+                    placeholder="Sobre o que você quer falar?"
+                  />
                 </div>
 
                 <div className="mt-5">
                   <label className="block">
-                    <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/60">Mensagem *</div>
+                    <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/60">
+                      Mensagem *
+                    </div>
                     <textarea
                       rows={5}
                       value={form.mensagem}
@@ -99,9 +136,13 @@ export function Contato() {
                   className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-[4px] bg-[#6E3AFF] py-4 text-[12px] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#5829d9] disabled:opacity-60"
                 >
                   {loading ? (
-                    <><Loader2 className="h-4 w-4 animate-spin" /> Enviando...</>
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Enviando...
+                    </>
                   ) : (
-                    <><Send className="h-4 w-4" /> Enviar mensagem</>
+                    <>
+                      <Send className="h-4 w-4" /> Enviar mensagem
+                    </>
                   )}
                 </button>
               </form>
@@ -128,7 +169,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/60">{label}</div>
+      <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/60">
+        {label}
+      </div>
       <input
         type={type}
         value={value}

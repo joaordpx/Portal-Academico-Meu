@@ -189,7 +189,9 @@ function ListaEditais() {
       ) : paginados.length === 0 ? (
         <div className="py-20 text-center">
           <p className="text-[18px] font-bold text-[#1a1a1a]">Nenhum edital encontrado</p>
-          <p className="mt-2 text-[14px] text-[#1a1a1a]/55">Ajuste os filtros para ver mais resultados.</p>
+          <p className="mt-2 text-[14px] text-[#1a1a1a]/55">
+            Ajuste os filtros para ver mais resultados.
+          </p>
           <button
             onClick={limpar}
             className="mt-6 inline-flex items-center gap-1.5 rounded-[6px] border border-[#6E3AFF] px-4 py-2.5 text-[13px] font-bold text-[#6E3AFF] transition-colors hover:bg-[#6E3AFF] hover:text-white"
@@ -211,7 +213,11 @@ function ListaEditais() {
                     <div className="flex flex-wrap gap-1.5">
                       <Tag
                         label={e.status}
-                        className={aberto ? "bg-[#00B894]/14 text-[#0a7d68]" : "bg-[#1a1a1a]/[0.07] text-[#1a1a1a]/55"}
+                        className={
+                          aberto
+                            ? "bg-[#00B894]/14 text-[#0a7d68]"
+                            : "bg-[#1a1a1a]/[0.07] text-[#1a1a1a]/55"
+                        }
                       />
                       <Tag label={e.tipo} className={TIPO_STYLE[e.tipo]} />
                       <Tag label={e.campus} className="bg-[#1a1a1a]/[0.06] text-[#1a1a1a]/60" />
@@ -336,11 +342,7 @@ const sections = [
       <PanelLinks
         accent="roxo"
         intro="Programas e projetos ligados à produção acadêmica e à atuação extensionista."
-        links={[
-          { label: "Programas" },
-          { label: "Projetos" },
-          { label: "Sistemas Relacionados" },
-        ]}
+        links={[{ label: "Programas" }, { label: "Projetos" }, { label: "Sistemas Relacionados" }]}
       />
     ),
   },

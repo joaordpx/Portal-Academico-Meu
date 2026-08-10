@@ -1,7 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronRight, Home, CheckCircle2, FileText, Download, BookOpen, Mail, Phone, MapPin, Clock, User } from "lucide-react";
+import {
+  ChevronRight,
+  Home,
+  CheckCircle2,
+  FileText,
+  Download,
+  BookOpen,
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  User,
+} from "lucide-react";
 import type { InfoItem } from "../../types";
 import { ImageWithFallback } from "../components/shared/ImageWithFallback";
 import { Reveal } from "../components/shared/Reveal";
@@ -20,19 +32,27 @@ const TABS = [
 export function CursoDetalhe() {
   const { slug } = useParams();
   const [tab, setTab] = useState("sobre");
-  const [curso, setCurso] = useState<CursoDetalheType | null>(null);
-  const [loading, setLoading] = useState(true);
+  // Guarda o slug junto com os dados: assim "carregando" é derivado da
+  // comparação com o slug atual, sem precisar de setState dentro do efeito.
+  const [carregado, setCarregado] = useState<{
+    slug: string;
+    curso: CursoDetalheType | null;
+  } | null>(null);
+
+  const slugAtual = slug ?? "direito";
 
   useEffect(() => {
     let ativo = true;
-    setLoading(true);
-    getCurso(slug ?? "direito")
-      .then((data) => ativo && setCurso(data))
-      .finally(() => ativo && setLoading(false));
+    getCurso(slugAtual).then((data) => {
+      if (ativo) setCarregado({ slug: slugAtual, curso: data });
+    });
     return () => {
       ativo = false;
     };
-  }, [slug]);
+  }, [slugAtual]);
+
+  const loading = carregado?.slug !== slugAtual;
+  const curso = carregado?.curso ?? null;
 
   if (loading || !curso) {
     return (
@@ -50,9 +70,13 @@ export function CursoDetalhe() {
       <section className="border-b border-[#e5e5e5] bg-white">
         <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-8 lg:px-12 lg:pb-20 lg:pt-10">
           <nav className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1a1a1a]/50">
-            <Link to="/" className="flex items-center gap-1.5 hover:text-[#6E3AFF]"><Home className="h-3 w-3" /> Início</Link>
+            <Link to="/" className="flex items-center gap-1.5 hover:text-[#6E3AFF]">
+              <Home className="h-3 w-3" /> Início
+            </Link>
             <ChevronRight className="h-3 w-3" />
-            <Link to="/cursos" className="hover:text-[#6E3AFF]">Cursos</Link>
+            <Link to="/cursos" className="hover:text-[#6E3AFF]">
+              Cursos
+            </Link>
             <ChevronRight className="h-3 w-3" />
             <span className="text-[#1a1a1a]">{curso.nome}</span>
           </nav>
@@ -76,9 +100,16 @@ export function CursoDetalhe() {
                   ["Duração", curso.duracaoLabel],
                   ["Grau", curso.grau],
                 ].map(([k, v], i) => (
-                  <div key={k} className={`py-6 ${i < 2 ? "border-r border-[#e5e5e5] pr-4" : "pl-4"}`}>
-                    <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/50">{k}</div>
-                    <div className="mt-2 text-[22px] font-bold tracking-[-0.02em] text-[#1a1a1a]">{v}</div>
+                  <div
+                    key={k}
+                    className={`py-6 ${i < 2 ? "border-r border-[#e5e5e5] pr-4" : "pl-4"}`}
+                  >
+                    <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/50">
+                      {k}
+                    </div>
+                    <div className="mt-2 text-[22px] font-bold tracking-[-0.02em] text-[#1a1a1a]">
+                      {v}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -140,9 +171,13 @@ export function CursoDetalhe() {
               {tab === "estagio" && <EstagioTCC curso={curso} />}
               {tab === "documentos" && <Documentos curso={curso} />}
               {tab === "coordenacao" && <Coordenacao curso={curso} />}
-              {tab !== "sobre" && tab !== "matriz" && tab !== "estagio" && tab !== "documentos" && tab !== "coordenacao" && (
-                <Placeholder label={TABS.find((t) => t.id === tab)?.label ?? ""} />
-              )}
+              {tab !== "sobre" &&
+                tab !== "matriz" &&
+                tab !== "estagio" &&
+                tab !== "documentos" &&
+                tab !== "coordenacao" && (
+                  <Placeholder label={TABS.find((t) => t.id === tab)?.label ?? ""} />
+                )}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -155,7 +190,9 @@ export function CursoDetalhe() {
 function SectionTitle({ eyebrow, title }: { eyebrow: string; title?: string }) {
   return (
     <div>
-      <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#6E3AFF]">{eyebrow}</div>
+      <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#6E3AFF]">
+        {eyebrow}
+      </div>
       {title && (
         <h2 className="mt-4 text-balance text-[28px] font-bold leading-[1.1] tracking-[-0.03em] text-[#1a1a1a] lg:text-[38px]">
           {title}
@@ -187,8 +224,12 @@ function Sobre({ curso }: { curso: CursoDetalheType }) {
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {curso.dados.map((d) => (
             <div key={d.rotulo} className="rounded-[8px] border border-[#e5e5e5] p-4">
-              <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a]/45">{d.rotulo}</div>
-              <div className="mt-1.5 text-[16px] font-bold tracking-[-0.01em] text-[#1a1a1a]">{d.valor}</div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a]/45">
+                {d.rotulo}
+              </div>
+              <div className="mt-1.5 text-[16px] font-bold tracking-[-0.01em] text-[#1a1a1a]">
+                {d.valor}
+              </div>
             </div>
           ))}
         </div>
@@ -214,7 +255,9 @@ function Sobre({ curso }: { curso: CursoDetalheType }) {
           {curso.mercadoTrabalho.map((m, i) => (
             <Reveal key={m.titulo} delay={(i % 4) * 0.04}>
               <div className="h-full rounded-[8px] border border-[#e5e5e5] p-5">
-                <div className="text-[15px] font-bold tracking-[-0.015em] text-[#1a1a1a]">{m.titulo}</div>
+                <div className="text-[15px] font-bold tracking-[-0.015em] text-[#1a1a1a]">
+                  {m.titulo}
+                </div>
                 <p className="mt-2 text-[13px] leading-[1.55] text-[#1a1a1a]/65">{m.descricao}</p>
               </div>
             </Reveal>
@@ -335,11 +378,15 @@ function EstagioTCC({ curso }: { curso: CursoDetalheType }) {
       {/* ── Estágio ── */}
       <section className="pb-16">
         <SectionTitle eyebrow="Prática profissional" title="Estágio" />
-        <p className="mt-6 max-w-3xl text-[16px] leading-[1.65] text-[#1a1a1a]/70">{estagio.intro}</p>
+        <p className="mt-6 max-w-3xl text-[16px] leading-[1.65] text-[#1a1a1a]/70">
+          {estagio.intro}
+        </p>
 
         <InfoBox title="Informações importantes" items={estagio.informacoes} />
 
-        <p className="mt-6 max-w-3xl text-[16px] leading-[1.65] text-[#1a1a1a]/70">{estagio.descricao}</p>
+        <p className="mt-6 max-w-3xl text-[16px] leading-[1.65] text-[#1a1a1a]/70">
+          {estagio.descricao}
+        </p>
 
         <MiniHead>Documentos necessários</MiniHead>
         <ul className="mt-4 grid grid-cols-1 gap-x-12 gap-y-0 sm:grid-cols-2">
@@ -367,7 +414,9 @@ function EstagioTCC({ curso }: { curso: CursoDetalheType }) {
 
         <InfoBox title="Orientações gerais" items={tcc.orientacoes} />
 
-        <p className="mt-6 max-w-3xl text-[16px] leading-[1.65] text-[#1a1a1a]/70">{tcc.descricao}</p>
+        <p className="mt-6 max-w-3xl text-[16px] leading-[1.65] text-[#1a1a1a]/70">
+          {tcc.descricao}
+        </p>
 
         <MiniHead>Etapas do TCC</MiniHead>
         <ol className="mt-4 space-y-3">
@@ -422,7 +471,9 @@ function Documentos({ curso }: { curso: CursoDetalheType }) {
                   {a.label}
                 </h3>
                 {a.desc && (
-                  <p className="mt-1.5 flex-1 text-[13px] leading-[1.5] text-[#1a1a1a]/60">{a.desc}</p>
+                  <p className="mt-1.5 flex-1 text-[13px] leading-[1.5] text-[#1a1a1a]/60">
+                    {a.desc}
+                  </p>
                 )}
                 <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]">
                   <Download className="h-3.5 w-3.5" /> Baixar
@@ -452,7 +503,9 @@ function Documentos({ curso }: { curso: CursoDetalheType }) {
               >
                 <span className="flex items-center gap-3">
                   <FileText className="h-4 w-4 shrink-0 text-[#1a1a1a]/40" />
-                  <span className="text-[14px] font-semibold leading-[1.35] text-[#1a1a1a]">{a.label}</span>
+                  <span className="text-[14px] font-semibold leading-[1.35] text-[#1a1a1a]">
+                    {a.label}
+                  </span>
                 </span>
                 <Download className="h-4 w-4 shrink-0 text-[#1a1a1a]/30 transition-colors group-hover:text-[#6E3AFF]" />
               </a>
@@ -469,7 +522,12 @@ function Coordenacao({ curso }: { curso: CursoDetalheType }) {
   const linhas = [
     { icon: User, label: "Coordenador(a)", value: c.coordenador },
     { icon: Mail, label: "E-mail", value: c.email, href: `mailto:${c.email}` },
-    { icon: Phone, label: "Telefone", value: c.telefone, href: `tel:${c.telefone.replace(/[^\d+]/g, "")}` },
+    {
+      icon: Phone,
+      label: "Telefone",
+      value: c.telefone,
+      href: `tel:${c.telefone.replace(/[^\d+]/g, "")}`,
+    },
     { icon: MapPin, label: "Localização", value: c.localizacao },
     { icon: Clock, label: "Horário de atendimento", value: c.horarioAtendimento },
   ];
@@ -493,7 +551,10 @@ function Coordenacao({ curso }: { curso: CursoDetalheType }) {
                     {l.label}
                   </div>
                   {l.href ? (
-                    <a href={l.href} className="mt-0.5 block text-[15px] text-[#2563EB] hover:underline">
+                    <a
+                      href={l.href}
+                      className="mt-0.5 block text-[15px] text-[#2563EB] hover:underline"
+                    >
                       {l.value}
                     </a>
                   ) : (
@@ -526,8 +587,8 @@ function Placeholder({ label }: { label: string }) {
         Conteúdo de <em className="font-light italic">{label}</em>
       </h3>
       <p className="mx-auto mt-3 max-w-md text-[15px] text-[#1a1a1a]/60">
-        Esta seção será publicada em breve com matriz curricular, ementas,
-        documentos e contatos da coordenação.
+        Esta seção será publicada em breve com matriz curricular, ementas, documentos e contatos da
+        coordenação.
       </p>
     </div>
   );

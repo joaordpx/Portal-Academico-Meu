@@ -42,14 +42,13 @@ export function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 w-full bg-white transition-all duration-300 ${scrolled ? "border-b border-[#e5e5e5]" : "border-b border-transparent"
-          }`}
+        className={`sticky top-0 z-50 w-full bg-white transition-all duration-300 ${
+          scrolled ? "border-b border-[#e5e5e5]" : "border-b border-transparent"
+        }`}
       >
         <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between gap-6 px-6 lg:px-12">
           <NavLink to="/" className="flex items-baseline gap-3 shrink-0">
-            <span className="text-xl font-bold tracking-[-0.04em] text-[#1a1a1a]">
-              UNIMONTES
-            </span>
+            <span className="text-xl font-bold tracking-[-0.04em] text-[#1a1a1a]">UNIMONTES</span>
             <span className="hidden border-l border-[#1a1a1a]/15 pl-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1a1a1a]/50 xl:inline">
               Portal Acadêmico
             </span>
@@ -86,7 +85,8 @@ export function Header() {
                 to={item.to}
                 end={item.end}
                 className={({ isActive }) =>
-                  `relative whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors ${isActive ? "text-[#1a1a1a]" : "text-[#1a1a1a]/55 hover:text-[#1a1a1a]"
+                  `relative whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors ${
+                    isActive ? "text-[#1a1a1a]" : "text-[#1a1a1a]/55 hover:text-[#1a1a1a]"
                   }`
                 }
               >
@@ -122,7 +122,10 @@ export function Header() {
                   end={item.end}
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
-                    `rounded-[4px] px-4 py-3 text-[14px] font-medium ${isActive ? "bg-[#f4f4f4] text-[#1a1a1a]" : "text-[#1a1a1a]/70 hover:bg-[#fafafa]"
+                    `rounded-[4px] px-4 py-3 text-[14px] font-medium ${
+                      isActive
+                        ? "bg-[#f4f4f4] text-[#1a1a1a]"
+                        : "text-[#1a1a1a]/70 hover:bg-[#fafafa]"
                     }`
                   }
                 >
@@ -130,7 +133,10 @@ export function Header() {
                 </NavLink>
               ))}
               <button
-                onClick={() => { setMobileOpen(false); setSearchOpen(true); }}
+                onClick={() => {
+                  setMobileOpen(false);
+                  setSearchOpen(true);
+                }}
                 className="mt-2 flex items-center justify-center gap-2 rounded-[4px] border border-[#e5e5e5] px-4 py-3 text-sm font-semibold text-[#1a1a1a]"
               >
                 <Search className="h-4 w-4" /> Buscar

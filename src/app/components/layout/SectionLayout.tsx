@@ -47,54 +47,54 @@ export function SectionLayout({
     <>
       {/* Mais acessados + Search */}
       {hasSearch && (
-      <section className="bg-white">
-        <div className="mx-auto max-w-[1400px] px-6 pt-10 pb-12 lg:px-12 lg:pt-12 lg:pb-16">
-          <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#1a1a1a]/40">
-            Mais acessados
-          </div>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {popular?.map((p) => (
-              <a
-                key={p.label}
-                href={p.href ?? "#"}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#1a1a1a] bg-white px-4 py-1.5 text-[12px] font-semibold text-[#1a1a1a] transition-colors hover:bg-[#1a1a1a] hover:text-white"
-              >
-                {p.label}
-              </a>
-            ))}
-          </div>
+        <section className="bg-white">
+          <div className="mx-auto max-w-[1400px] px-6 pt-10 pb-12 lg:px-12 lg:pt-12 lg:pb-16">
+            <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#1a1a1a]/40">
+              Mais acessados
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {popular?.map((p) => (
+                <a
+                  key={p.label}
+                  href={p.href ?? "#"}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-[#1a1a1a] bg-white px-4 py-1.5 text-[12px] font-semibold text-[#1a1a1a] transition-colors hover:bg-[#1a1a1a] hover:text-white"
+                >
+                  {p.label}
+                </a>
+              ))}
+            </div>
 
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="mt-10 flex items-center rounded-[4px] border border-[#e5e5e5] bg-white focus-within:border-[#6E3AFF] cursor: cursor-pointer"
-          >
-            <input
-              type="text"
-              placeholder={searchPlaceholder}
-              className="flex-1 bg-transparent px-5 py-4 text-[14px] text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="m-1.5 inline-flex items-center gap-2 rounded-[3px] bg-[#1a1a1a] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#6E3AFF]"
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="mt-10 flex items-center rounded-[4px] border border-[#e5e5e5] bg-white focus-within:border-[#6E3AFF] cursor: cursor-pointer"
             >
-              Buscar
-            </button>
-          </form>
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">
-              Sugestões:
-            </span>
-            {tags?.map((t) => (
+              <input
+                type="text"
+                placeholder={searchPlaceholder}
+                className="flex-1 bg-transparent px-5 py-4 text-[14px] text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus:outline-none"
+              />
               <button
-                key={t}
-                className="text-[12px] text-[#1a1a1a]/60 transition-colors hover:text-[#6E3AFF]"
+                type="submit"
+                className="m-1.5 inline-flex items-center gap-2 rounded-[3px] bg-[#1a1a1a] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#6E3AFF]"
               >
-                {t}
+                Buscar
               </button>
-            ))}
+            </form>
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">
+                Sugestões:
+              </span>
+              {tags?.map((t) => (
+                <button
+                  key={t}
+                  className="text-[12px] text-[#1a1a1a]/60 transition-colors hover:text-[#6E3AFF]"
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       )}
 
       {/* Sidebar + active section content */}
@@ -110,10 +110,11 @@ export function SectionLayout({
                   <button
                     key={s.id}
                     onClick={() => setActive(s.id)}
-                    className={`group relative flex items-center rounded-[8px] px-4 py-3 text-left text-[14px] transition-colors ${active === s.id
-                      ? `font-bold ${ac.text}`
-                      : "font-medium text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.04] hover:text-[#1a1a1a]"
-                      }`}
+                    className={`group relative flex items-center rounded-[8px] px-4 py-3 text-left text-[14px] transition-colors ${
+                      active === s.id
+                        ? `font-bold ${ac.text}`
+                        : "font-medium text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.04] hover:text-[#1a1a1a]"
+                    }`}
                   >
                     {active === s.id && (
                       <motion.span
@@ -214,11 +215,7 @@ export function PanelCardGrid({
 }) {
   return (
     <div>
-      {intro && (
-        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">
-          {intro}
-        </p>
-      )}
+      {intro && <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>}
       <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {cards.map((c, i) => (
           <a
@@ -239,9 +236,7 @@ export function PanelCardGrid({
               <h3 className="mt-4 text-balance text-[22px] font-bold leading-[1.1] tracking-[-0.02em] text-[#1a1a1a]">
                 {c.title}
               </h3>
-              <p className="mt-3 text-[14px] leading-[1.55] text-[#1a1a1a]/65">
-                {c.desc}
-              </p>
+              <p className="mt-3 text-[14px] leading-[1.55] text-[#1a1a1a]/65">{c.desc}</p>
             </div>
             <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/70">
               Acessar
@@ -269,9 +264,7 @@ export function PanelRedirect({
 }) {
   return (
     <div>
-      {intro && (
-        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
-      )}
+      {intro && <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>}
       <a
         href={href}
         target="_blank"
@@ -311,9 +304,7 @@ export function PanelAccordion({
 
   return (
     <div>
-      {intro && (
-        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
-      )}
+      {intro && <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>}
       <div className="mt-8 flex flex-col gap-2.5">
         {itens.map((item, i) => {
           const ativo = aberto === i;
@@ -429,9 +420,7 @@ export function PanelLinks({
 }) {
   return (
     <div>
-      {intro && (
-        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
-      )}
+      {intro && <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>}
       <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {links.map((l) => {
           const Icon = l.external ? ExternalLink : ArrowUpRight;
@@ -471,9 +460,7 @@ export function PanelSteps({ intro, tracks }: { intro?: string; tracks: Track[] 
 
   return (
     <div>
-      {intro && (
-        <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>
-      )}
+      {intro && <p className="max-w-2xl text-[17px] leading-[1.6] text-[#1a1a1a]/70">{intro}</p>}
 
       {tracks.length > 1 && (
         <div className="mt-8 inline-flex flex-wrap gap-1 rounded-[8px] border border-[#e5e5e5] bg-[#fafafa] p-1">

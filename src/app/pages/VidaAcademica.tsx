@@ -1,6 +1,12 @@
 import { GraduationCap } from "lucide-react";
 import { PageHeader } from "../components/layout/PageHeader";
-import { SectionLayout, PanelCardGrid, PanelRedirect, PanelSteps, PanelLinks } from "../components/layout/SectionLayout";
+import {
+  SectionLayout,
+  PanelCardGrid,
+  PanelRedirect,
+  PanelSteps,
+  PanelLinks,
+} from "../components/layout/SectionLayout";
 
 const popular = [
   { label: "Calendário Acadêmico" },
@@ -27,10 +33,22 @@ const sections = [
       <PanelCardGrid
         intro="Encontre as principais orientações para iniciar sua vida acadêmica na UNIMONTES — primeiros acessos, sistemas e dúvidas frequentes do calouro."
         cards={[
-          { title: "Manual do Calouro", desc: "Roteiro completo para os primeiros passos na universidade." },
-          { title: "Acesso aos Sistemas", desc: "WebGiz, Moodle, e-mail institucional e biblioteca digital." },
-          { title: "Mapa do Campus", desc: "Localize blocos, salas, laboratórios e setores administrativos." },
-          { title: "Dúvidas Frequentes", desc: "Respostas para as principais dúvidas dos novos estudantes." },
+          {
+            title: "Manual do Calouro",
+            desc: "Roteiro completo para os primeiros passos na universidade.",
+          },
+          {
+            title: "Acesso aos Sistemas",
+            desc: "WebGiz, Moodle, e-mail institucional e biblioteca digital.",
+          },
+          {
+            title: "Mapa do Campus",
+            desc: "Localize blocos, salas, laboratórios e setores administrativos.",
+          },
+          {
+            title: "Dúvidas Frequentes",
+            desc: "Respostas para as principais dúvidas dos novos estudantes.",
+          },
         ]}
       />
     ),
@@ -115,11 +133,23 @@ const sections = [
       <PanelLinks
         intro="Acesse o acervo, renove empréstimos e consulte as normas da biblioteca."
         links={[
-          { label: "Catálogo de livros", desc: "Consulte o acervo físico e reserve exemplares.", external: true },
-          { label: "Empréstimos e renovação", desc: "Acompanhe e renove seus empréstimos online.", external: true },
+          {
+            label: "Catálogo de livros",
+            desc: "Consulte o acervo físico e reserve exemplares.",
+            external: true,
+          },
+          {
+            label: "Empréstimos e renovação",
+            desc: "Acompanhe e renove seus empréstimos online.",
+            external: true,
+          },
           { label: "Normas da biblioteca", desc: "Regras de uso, prazos e penalidades." },
           { label: "Contatos", desc: "Telefones, e-mail e horários de atendimento." },
-          { label: "Biblioteca virtual", desc: "Acervo digital de livros e periódicos.", external: true },
+          {
+            label: "Biblioteca virtual",
+            desc: "Acervo digital de livros e periódicos.",
+            external: true,
+          },
         ]}
       />
     ),
@@ -131,7 +161,10 @@ const sections = [
       <PanelLinks
         intro="Informações sobre atividades complementares, iniciação científica, extensão, estágio e monitoria."
         links={[
-          { label: "AACC", desc: "Atividades Acadêmico-Científico-Culturais — horas complementares." },
+          {
+            label: "AACC",
+            desc: "Atividades Acadêmico-Científico-Culturais — horas complementares.",
+          },
           { label: "AIEX", desc: "Atividades de Interação Ensino-Extensão." },
           { label: "Iniciação Científica", desc: "PIBIC, PIBITI e bolsas de pesquisa por edital." },
           { label: "Extensão", desc: "Projetos de extensão junto à comunidade." },
@@ -149,7 +182,10 @@ const sections = [
       <PanelLinks
         intro="Sistemas, plataformas e infraestrutura tecnológica disponíveis ao estudante."
         links={[
-          { label: "E-mail institucional", desc: "Conta institucional do estudante e como acessá-la." },
+          {
+            label: "E-mail institucional",
+            desc: "Conta institucional do estudante e como acessá-la.",
+          },
           { label: "Wi-Fi", desc: "Rede sem fio do campus — como se conectar." },
           { label: "Laboratórios", desc: "Laboratórios de informática e horários de uso." },
         ]}
@@ -164,7 +200,10 @@ const sections = [
         intro="Resoluções e normas que regem a vida acadêmica na universidade."
         links={[
           { label: "Direitos e deveres", desc: "Direitos, deveres e conduta do estudante." },
-          { label: "Avaliação e frequência", desc: "Critérios de aprovação, notas e frequência mínima." },
+          {
+            label: "Avaliação e frequência",
+            desc: "Critérios de aprovação, notas e frequência mínima.",
+          },
           { label: "Trancamento", desc: "Como solicitar trancamento total ou parcial." },
           { label: "Segunda chamada", desc: "Solicitação de prova em segunda chamada." },
           { label: "Aproveitamento de estudos", desc: "Dispensa de disciplinas já cursadas." },
@@ -179,12 +218,18 @@ const sections = [
       <PanelLinks
         intro="Passo a passo para os principais serviços e sistemas do portal."
         links={[
-          { label: "Uso de sistemas", desc: "Como acessar e navegar pelos sistemas da universidade." },
+          {
+            label: "Uso de sistemas",
+            desc: "Como acessar e navegar pelos sistemas da universidade.",
+          },
           { label: "Matrícula", desc: "Passo a passo da matrícula e renovação." },
           { label: "Documentos", desc: "Como emitir declarações, histórico e demais documentos." },
           { label: "Busca", desc: "Como localizar informações e serviços no portal." },
           { label: "Requerimento", desc: "Como abrir e acompanhar requerimentos." },
-          { label: "Processos acadêmicos", desc: "Orientações sobre processos e trâmites acadêmicos." },
+          {
+            label: "Processos acadêmicos",
+            desc: "Orientações sobre processos e trâmites acadêmicos.",
+          },
         ]}
       />
     ),

@@ -208,10 +208,20 @@ export function Cursos() {
               >
                 <div className="mt-5 grid grid-cols-1 gap-6 rounded-[10px] border border-[#e0e0e0] bg-[#fafafa] p-6 sm:grid-cols-2 lg:grid-cols-4">
                   {[
-                    { label: "Centro de Ensino", value: centro, set: setCentro, opts: filters.centro },
+                    {
+                      label: "Centro de Ensino",
+                      value: centro,
+                      set: setCentro,
+                      opts: filters.centro,
+                    },
                     { label: "Turno", value: turno, set: setTurno, opts: filters.turno },
                     { label: "Grau", value: grau, set: setGrau, opts: filters.grau },
-                    { label: "Área do Conhecimento", value: area, set: setArea, opts: filters.area },
+                    {
+                      label: "Área do Conhecimento",
+                      value: area,
+                      set: setArea,
+                      opts: filters.area,
+                    },
                   ].map((f) => (
                     <div key={f.label}>
                       <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/70">
@@ -242,8 +252,7 @@ export function Cursos() {
           {/* Linha de status: contagem + toggle de visualização */}
           <div className="mt-8 flex items-center justify-between border-b border-[#e5e5e5] pb-4">
             <div className="text-[13px] text-[#1a1a1a]/60">
-              Exibindo{" "}
-              <span className="font-bold text-[#1a1a1a]">{filtered.length}</span>{" "}
+              Exibindo <span className="font-bold text-[#1a1a1a]">{filtered.length}</span>{" "}
               {filtered.length === 1 ? "curso disponível" : "cursos disponíveis"}
               {activeFilters > 0 && (
                 <button
@@ -260,7 +269,9 @@ export function Cursos() {
                 onClick={() => setView("grid")}
                 aria-label="Visualizar em grade"
                 className={`flex h-8 w-8 items-center justify-center rounded-[4px] transition-colors ${
-                  view === "grid" ? "bg-[#6E3AFF] text-white" : "text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.05] hover:text-[#1a1a1a]"
+                  view === "grid"
+                    ? "bg-[#6E3AFF] text-white"
+                    : "text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.05] hover:text-[#1a1a1a]"
                 }`}
               >
                 <LayoutGrid className="h-4 w-4" />
@@ -269,7 +280,9 @@ export function Cursos() {
                 onClick={() => setView("list")}
                 aria-label="Visualizar em lista"
                 className={`flex h-8 w-8 items-center justify-center rounded-[4px] transition-colors ${
-                  view === "list" ? "bg-[#6E3AFF] text-white" : "text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.05] hover:text-[#1a1a1a]"
+                  view === "list"
+                    ? "bg-[#6E3AFF] text-white"
+                    : "text-[#1a1a1a]/60 hover:bg-[#1a1a1a]/[0.05] hover:text-[#1a1a1a]"
                 }`}
               >
                 <ListIcon className="h-4 w-4" />
@@ -385,10 +398,18 @@ export function Cursos() {
           {/* Paginação */}
           {totalPages > 1 && (
             <div className="mt-12 flex items-center justify-center gap-1.5">
-              <PagerButton onClick={() => setPage(1)} disabled={currentPage === 1} ariaLabel="Primeira página">
+              <PagerButton
+                onClick={() => setPage(1)}
+                disabled={currentPage === 1}
+                ariaLabel="Primeira página"
+              >
                 <ChevronsLeft className="h-4 w-4" />
               </PagerButton>
-              <PagerButton onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={currentPage === 1} ariaLabel="Página anterior">
+              <PagerButton
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                ariaLabel="Página anterior"
+              >
                 <ChevronLeft className="h-4 w-4" />
               </PagerButton>
 
@@ -406,10 +427,18 @@ export function Cursos() {
                 </button>
               ))}
 
-              <PagerButton onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} ariaLabel="Próxima página">
+              <PagerButton
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                ariaLabel="Próxima página"
+              >
                 <ChevronRight className="h-4 w-4" />
               </PagerButton>
-              <PagerButton onClick={() => setPage(totalPages)} disabled={currentPage === totalPages} ariaLabel="Última página">
+              <PagerButton
+                onClick={() => setPage(totalPages)}
+                disabled={currentPage === totalPages}
+                ariaLabel="Última página"
+              >
                 <ChevronsRight className="h-4 w-4" />
               </PagerButton>
             </div>

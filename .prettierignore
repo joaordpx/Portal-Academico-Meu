@@ -1,0 +1,7 @@
+dist
+node_modules
+package-lock.json
+
+# Componentes de biblioteca (shadcn/Radix): mantidos como vieram do upstream,
+# para que atualizações não gerem conflito de formatação
+src/app/components/ui

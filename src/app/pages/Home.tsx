@@ -24,7 +24,12 @@ import campusPredio1 from "../../assets/campus-predio-1.jpg";
 
 // Importando Tipos e Serviços
 import { Comunicado, Oportunidade, Noticia, DestaqueHero } from "../../types";
-import { getComunicados, getOportunidades, getNoticias, getDestaqueHero } from "../../services/homeService";
+import {
+  getComunicados,
+  getOportunidades,
+  getNoticias,
+  getDestaqueHero,
+} from "../../services/homeService";
 
 export function Home() {
   const [comunicados, setComunicados] = useState<Comunicado[]>([]);
@@ -40,7 +45,7 @@ export function Home() {
           getComunicados(),
           getOportunidades(),
           getNoticias(),
-          getDestaqueHero()
+          getDestaqueHero(),
         ]);
 
         setComunicados(comunicadosData);
@@ -121,8 +126,7 @@ function HeroIntro({ destaque }: { destaque: DestaqueHero | null }) {
               transition={{ duration: 0.7, delay: 0.05 }}
               className="mt-6 text-balance text-[44px] font-bold leading-[0.92] tracking-[-0.045em] text-[#1a1a1a] sm:text-[64px] lg:text-[96px] xl:text-[112px]"
             >
-              Sua vida acadêmica,{" "}
-              <span className="font-light italic">reunida</span> num só lugar.
+              Sua vida acadêmica, <span className="font-light italic">reunida</span> num só lugar.
             </motion.h1>
 
             <motion.p
@@ -131,9 +135,8 @@ function HeroIntro({ destaque }: { destaque: DestaqueHero | null }) {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-10 max-w-xl text-[17px] leading-[1.6] text-[#1a1a1a]/70"
             >
-              Acesse rapidamente informações, serviços e oportunidades — de
-              editais e calendário a documentos, estágios e suporte — no portal
-              oficial da Unimontes.
+              Acesse rapidamente informações, serviços e oportunidades — de editais e calendário a
+              documentos, estágios e suporte — no portal oficial da Unimontes.
             </motion.p>
           </div>
 
@@ -203,11 +206,15 @@ function HeroIntro({ destaque }: { destaque: DestaqueHero | null }) {
             <Link
               key={c.no}
               to={c.to}
-              className={`group grid grid-cols-1 items-stretch transition-colors hover:bg-[#fafafa] sm:grid-cols-[1fr_180px] ${i === 0 ? "border-b border-[#e5e5e5] md:border-b-0 md:border-r" : ""
-                }`}
+              className={`group grid grid-cols-1 items-stretch transition-colors hover:bg-[#fafafa] sm:grid-cols-[1fr_180px] ${
+                i === 0 ? "border-b border-[#e5e5e5] md:border-b-0 md:border-r" : ""
+              }`}
             >
               <div className="flex flex-col justify-between gap-6 p-8 lg:p-10">
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em]" style={{ color: c.accent }}>
+                <div
+                  className="text-[11px] font-bold uppercase tracking-[0.18em]"
+                  style={{ color: c.accent }}
+                >
                   {c.no} / {c.tag}
                 </div>
                 <div>
@@ -217,14 +224,21 @@ function HeroIntro({ destaque }: { destaque: DestaqueHero | null }) {
                   <p className="mt-3 max-w-md text-[15px] leading-[1.55] text-[#1a1a1a]/65">
                     {c.desc}
                   </p>
-                  <div className="mt-6 inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.14em]" style={{ color: c.accent }}>
+                  <div
+                    className="mt-6 inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.14em]"
+                    style={{ color: c.accent }}
+                  >
                     {c.cta}
                     <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </div>
               </div>
               <div className="relative h-full min-h-[160px] overflow-hidden bg-[#f4f4f4]">
-                <ImageWithFallback src={c.img} alt={c.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                <ImageWithFallback
+                  src={c.img}
+                  alt={c.title}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
               </div>
             </Link>
           ))}
@@ -279,11 +293,18 @@ function AtalhosRapidos() {
                     className="group flex h-full min-h-[180px] w-full cursor-pointer flex-col justify-between border-b border-r border-[#e5e5e5] bg-white p-6 text-left transition-colors hover:bg-[#fafafa]"
                   >
                     <div className="flex items-start justify-between">
-                      <Icon className="h-6 w-6 text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]" strokeWidth={1.5} />
-                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">{n}</span>
+                      <Icon
+                        className="h-6 w-6 text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]"
+                        strokeWidth={1.5}
+                      />
+                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a1a1a]/35">
+                        {n}
+                      </span>
                     </div>
                     <div>
-                      <div className="text-[15px] font-bold leading-[1.2] tracking-[-0.015em] text-[#1a1a1a]">{it.label}</div>
+                      <div className="text-[15px] font-bold leading-[1.2] tracking-[-0.015em] text-[#1a1a1a]">
+                        {it.label}
+                      </div>
                       <div className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a]/40 transition-colors group-hover:text-[#6E3AFF]">
                         Abrir <ArrowUpRight className="h-3 w-3" />
                       </div>
@@ -301,10 +322,22 @@ function AtalhosRapidos() {
 
 function EstudeNaUnimontes() {
   const items = [
-    { icon: GraduationCap, title: "Como ingressar", desc: "SISU, vestibular e demais formas de entrada." },
+    {
+      icon: GraduationCap,
+      title: "Como ingressar",
+      desc: "SISU, vestibular e demais formas de entrada.",
+    },
     { icon: BookOpen, title: "Cursos ofertados", desc: "Mais de 47 graduações e diversas pós." },
-    { icon: ClipboardList, title: "Editais de ingresso", desc: "Calendários, vagas e processos seletivos." },
-    { icon: HelpCircle, title: "Dúvidas frequentes", desc: "Tire as principais dúvidas de novos estudantes." },
+    {
+      icon: ClipboardList,
+      title: "Editais de ingresso",
+      desc: "Calendários, vagas e processos seletivos.",
+    },
+    {
+      icon: HelpCircle,
+      title: "Dúvidas frequentes",
+      desc: "Tire as principais dúvidas de novos estudantes.",
+    },
   ];
   return (
     <section className="bg-[#1a1a1a] py-24 text-white lg:py-32">
@@ -320,11 +353,15 @@ function EstudeNaUnimontes() {
                 Faça parte da nossa <em className="font-light italic">comunidade.</em>
               </h2>
               <p className="mt-6 max-w-md text-[16px] leading-[1.6] text-white/65">
-                Tudo o que você precisa saber para ingressar — vestibular, SISU,
-                cursos, prazos e dúvidas mais comuns dos futuros calouros.
+                Tudo o que você precisa saber para ingressar — vestibular, SISU, cursos, prazos e
+                dúvidas mais comuns dos futuros calouros.
               </p>
               <div className="mt-10 overflow-hidden rounded-[4px] border border-white/15">
-                <ImageWithFallback src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900" alt="Formandos celebrando" className="aspect-[4/3] w-full object-cover" />
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+                  alt="Formandos celebrando"
+                  className="aspect-[4/3] w-full object-cover"
+                />
               </div>
             </div>
           </Reveal>
@@ -334,14 +371,27 @@ function EstudeNaUnimontes() {
                 const Icon = it.icon;
                 const n = String(i + 1).padStart(2, "0");
                 return (
-                  <motion.li key={it.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ delay: i * 0.1, duration: 0.5 }} className="group grid grid-cols-12 items-start gap-6 py-10 transition-colors hover:bg-white/[0.03]">
-                    <div className="col-span-2 text-[40px] font-bold leading-none tracking-[-0.04em] text-white/15 transition-colors group-hover:text-[#FFB800] lg:text-[56px]">{n}</div>
+                  <motion.li
+                    key={it.title}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                    className="group grid grid-cols-12 items-start gap-6 py-10 transition-colors hover:bg-white/[0.03]"
+                  >
+                    <div className="col-span-2 text-[40px] font-bold leading-none tracking-[-0.04em] text-white/15 transition-colors group-hover:text-[#FFB800] lg:text-[56px]">
+                      {n}
+                    </div>
                     <div className="col-span-9">
                       <div className="flex items-center gap-3">
                         <Icon className="h-4 w-4 text-[#FFB800]" />
-                        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">Tópico {n}</span>
+                        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">
+                          Tópico {n}
+                        </span>
                       </div>
-                      <h3 className="mt-4 text-balance text-[26px] font-bold leading-[1.05] tracking-[-0.025em] text-white lg:text-[32px]">{it.title}</h3>
+                      <h3 className="mt-4 text-balance text-[26px] font-bold leading-[1.05] tracking-[-0.025em] text-white lg:text-[32px]">
+                        {it.title}
+                      </h3>
                       <p className="mt-3 text-[16px] leading-[1.6] text-white/65">{it.desc}</p>
                     </div>
                     <ArrowUpRight className="col-span-1 mt-2 h-5 w-5 text-white/30 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#FFB800]" />
@@ -377,7 +427,10 @@ function Comunicados({ data }: { data: Comunicado[] }) {
                 Avisos da reitoria.
               </h2>
             </div>
-            <a href="#" className="group inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] hover:text-[#FF4D2E]">
+            <a
+              href="#"
+              className="group inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] hover:text-[#FF4D2E]"
+            >
               Ver todos os comunicados
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
@@ -387,9 +440,15 @@ function Comunicados({ data }: { data: Comunicado[] }) {
         <div className="divide-y divide-[#e5e5e5]">
           {data.map((c, i) => (
             <Reveal key={c.id} delay={i * 0.06}>
-              <motion.article whileHover={{ x: 4 }} className="group grid grid-cols-12 items-start gap-6 py-10">
+              <motion.article
+                whileHover={{ x: 4 }}
+                className="group grid grid-cols-12 items-start gap-6 py-10"
+              >
                 <div className="col-span-12 lg:col-span-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white" style={{ backgroundColor: c.tagColor }}>
+                  <span
+                    className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white"
+                    style={{ backgroundColor: c.tagColor }}
+                  >
                     <span className="h-1 w-1 rounded-full bg-white" />
                     {c.tag}
                   </span>
@@ -408,7 +467,10 @@ function Comunicados({ data }: { data: Comunicado[] }) {
                   </div>
                 </div>
                 <div className="col-span-12 flex items-start justify-end lg:col-span-3">
-                  <a href="#" className="inline-flex items-center gap-2 border-b border-[#1a1a1a] pb-1 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] transition-colors group-hover:border-[#FF4D2E] group-hover:text-[#FF4D2E]">
+                  <a
+                    href="#"
+                    className="inline-flex items-center gap-2 border-b border-[#1a1a1a] pb-1 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] transition-colors group-hover:border-[#FF4D2E] group-hover:text-[#FF4D2E]"
+                  >
                     Ler comunicado <ArrowUpRight className="h-3.5 w-3.5" />
                   </a>
                 </div>
@@ -438,7 +500,10 @@ function PrazosOportunidades({ data }: { data: Oportunidade[] }) {
                 Inscrições <em className="font-light italic">abertas</em> agora.
               </h2>
             </div>
-            <a href="#" className="group inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] hover:text-[#00B894]">
+            <a
+              href="#"
+              className="group inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] hover:text-[#00B894]"
+            >
               Ver mais oportunidades
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
@@ -448,7 +513,10 @@ function PrazosOportunidades({ data }: { data: Oportunidade[] }) {
         <div className="grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-4">
           {data.map((it, i) => (
             <Reveal key={it.id} delay={i * 0.06}>
-              <motion.div whileHover={{ y: -2 }} className="group flex h-full flex-col justify-between border-b border-r border-[#e5e5e5] bg-white p-7 transition-colors hover:bg-[#fafafa] sm:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(4n)]:border-r-0">
+              <motion.div
+                whileHover={{ y: -2 }}
+                className="group flex h-full flex-col justify-between border-b border-r border-[#e5e5e5] bg-white p-7 transition-colors hover:bg-[#fafafa] sm:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(4n)]:border-r-0"
+              >
                 <div>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#00B894] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
                     <span className="h-1 w-1 rounded-full bg-white" /> Aberto
@@ -466,13 +534,19 @@ function PrazosOportunidades({ data }: { data: Oportunidade[] }) {
                       ["Campus", it.campus],
                     ].map(([k, v]) => (
                       <div key={k} className="flex items-baseline justify-between gap-3">
-                        <dt className="font-bold uppercase tracking-[0.14em] text-[#1a1a1a]/40">{k}</dt>
+                        <dt className="font-bold uppercase tracking-[0.14em] text-[#1a1a1a]/40">
+                          {k}
+                        </dt>
                         <dd className="text-right font-semibold text-[#1a1a1a]">{v}</dd>
                       </div>
                     ))}
                   </dl>
-                  <a href="#" className="mt-6 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#00B894]">
-                    Ver detalhes <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <a
+                    href="#"
+                    className="mt-6 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#00B894]"
+                  >
+                    Ver detalhes{" "}
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                 </div>
               </motion.div>
@@ -501,8 +575,12 @@ function Noticias({ data }: { data: Noticia[] }) {
                 O que está <em className="font-light italic">acontecendo.</em>
               </h2>
             </div>
-            <a href="#" className="group inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] hover:text-[#6E3AFF]">
-              Ver mais notícias <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <a
+              href="#"
+              className="group inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] hover:text-[#6E3AFF]"
+            >
+              Ver mais notícias{" "}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
         </Reveal>
@@ -512,10 +590,17 @@ function Noticias({ data }: { data: Noticia[] }) {
             <Reveal key={n.id} delay={i * 0.08}>
               <motion.article whileHover={{ y: -3 }} className="group flex h-full flex-col">
                 <div className="overflow-hidden rounded-[4px]" style={{ backgroundColor: n.bg }}>
-                  <ImageWithFallback src={n.img} alt={n.title} className="aspect-[5/4] w-full object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.04]" />
+                  <ImageWithFallback
+                    src={n.img}
+                    alt={n.title}
+                    className="aspect-[5/4] w-full object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
                 </div>
                 <div className="mt-6 flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.18em]" style={{ color: n.catColor }}>
+                  <span
+                    className="text-[11px] font-bold uppercase tracking-[0.18em]"
+                    style={{ color: n.catColor }}
+                  >
                     {n.cat}
                   </span>
                   <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1a1a1a]/40">
@@ -525,11 +610,13 @@ function Noticias({ data }: { data: Noticia[] }) {
                 <h3 className="mt-3 text-balance text-[24px] font-bold leading-[1.1] tracking-[-0.025em] text-[#1a1a1a]">
                   {n.title}
                 </h3>
-                <p className="mt-3 flex-1 text-[15px] leading-[1.55] text-[#1a1a1a]/65">
-                  {n.desc}
-                </p>
-                <a href="#" className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]">
-                  Ler notícia <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <p className="mt-3 flex-1 text-[15px] leading-[1.55] text-[#1a1a1a]/65">{n.desc}</p>
+                <a
+                  href="#"
+                  className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#1a1a1a] transition-colors group-hover:text-[#6E3AFF]"
+                >
+                  Ler notícia{" "}
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               </motion.article>
             </Reveal>
@@ -541,11 +628,18 @@ function Noticias({ data }: { data: Noticia[] }) {
             <div className="flex items-center gap-5">
               <Compass className="h-10 w-10 text-[#FFB800]" strokeWidth={1.5} />
               <div>
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#FFB800]">Não encontrou o que buscava?</div>
-                <div className="mt-2 text-[24px] font-bold tracking-[-0.025em] lg:text-[28px]">Fale com a UNIMONTES</div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#FFB800]">
+                  Não encontrou o que buscava?
+                </div>
+                <div className="mt-2 text-[24px] font-bold tracking-[-0.025em] lg:text-[28px]">
+                  Fale com a UNIMONTES
+                </div>
               </div>
             </div>
-            <Link to="/contato" className="inline-flex items-center gap-2 rounded-[4px] bg-white px-6 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] transition-colors hover:bg-[#FFB800]">
+            <Link
+              to="/contato"
+              className="inline-flex items-center gap-2 rounded-[4px] bg-white px-6 py-3.5 text-[12px] font-bold uppercase tracking-[0.14em] text-[#1a1a1a] transition-colors hover:bg-[#FFB800]"
+            >
               Abrir contato <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>

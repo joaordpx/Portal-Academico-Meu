@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { LifeBuoy, Send, Loader2, Phone, Mail, Clock, AlarmClock } from "lucide-react";
+import { LifeBuoy, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { PageHeader } from "../components/layout/PageHeader";
 import {
   SectionLayout,
   PanelAccordion,
-  PanelLinks,
   PanelRelated,
   PanelNote,
 } from "../components/layout/SectionLayout";
@@ -18,14 +17,7 @@ const popular = [
   { label: "Como Usar o Portal" },
 ];
 
-const tags = [
-  "recuperar senha",
-  "declaração de matrícula",
-  "edital",
-  "WebGiz",
-  "Wi-Fi",
-  "PPC",
-];
+const tags = ["recuperar senha", "declaração de matrícula", "edital", "WebGiz", "Wi-Fi", "PPC"];
 
 /* ───────────── Formulário de contato ───────────── */
 
@@ -175,9 +167,7 @@ function Glossario() {
               key={s.sigla}
               className="rounded-[8px] border border-[#e5e5e5] bg-white px-5 py-4 transition-colors hover:border-[#6E3AFF]/40"
             >
-              <dt className="text-[15px] font-bold tracking-[-0.01em] text-[#6E3AFF]">
-                {s.sigla}
-              </dt>
+              <dt className="text-[15px] font-bold tracking-[-0.01em] text-[#6E3AFF]">{s.sigla}</dt>
               <dd className="mt-1 text-[13.5px] leading-[1.5] text-[#1a1a1a]/70">
                 {s.significado}
               </dd>
@@ -388,9 +378,9 @@ const sections = [
         />
 
         <PanelNote>
-          <strong className="font-bold">Informações importantes:</strong> telefone principal
-          (38) 3229-8000 · e-mail geral contato@unimontes.br · atendimento de segunda a sexta,
-          08h às 18h · prazo de resposta de até 5 dias úteis.
+          <strong className="font-bold">Informações importantes:</strong> telefone principal (38)
+          3229-8000 · e-mail geral contato@unimontes.br · atendimento de segunda a sexta, 08h às 18h
+          · prazo de resposta de até 5 dias úteis.
         </PanelNote>
 
         <PanelRelated
