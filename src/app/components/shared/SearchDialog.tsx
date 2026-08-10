@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { AnimatePresence, motion } from "motion/react";
 import {
@@ -27,17 +27,85 @@ type Item = {
 };
 
 const ITEMS: Item[] = [
-  { label: "Vida Acadêmica", hint: "Calendário · Matrícula · Biblioteca", to: "/vida-academica", icon: GraduationCap, group: "Seções", keywords: "calendario matricula biblioteca tutoriais" },
-  { label: "Cursos", hint: "Graduação · Centros · Turnos", to: "/cursos", icon: BookOpen, group: "Seções" },
-  { label: "Serviços e Documentos", hint: "WebGiz · Declarações · Requerimentos", to: "/servicos-documentos", icon: FileText, group: "Seções", keywords: "webgiz declaracao historico requerimento" },
-  { label: "Editais e Oportunidades", hint: "Editais · Estágios · Bolsas", to: "/editais-oportunidades", icon: ClipboardList, group: "Seções" },
-  { label: "Eventos", hint: "Cultural · Acadêmico · Comunitário", to: "/eventos", icon: CalendarHeart, group: "Seções" },
-  { label: "Assistência Estudantil", hint: "Auxílios · RU · Saúde", to: "/assistencia-estudantil", icon: HeartHandshake, group: "Seções" },
-  { label: "Movimento Estudantil e Lazer", hint: "DCE · Atléticas · Reservas", to: "/movimento-estudantil-lazer", icon: Megaphone, group: "Seções" },
-  { label: "Unidades e Localização", hint: "Mapa · Blocos · Setores", to: "/unidades-localizacao", icon: MapPin, group: "Seções" },
-  { label: "WebGiz", hint: "Acessar o sistema acadêmico", to: "/servicos-documentos", icon: Monitor, group: "Ações rápidas" },
-  { label: "Carteirinha estudantil", hint: "Como emitir", to: "/servicos-documentos", icon: IdCard, group: "Ações rápidas" },
-  { label: "Contato", hint: "Fale com a Unimontes", to: "/contato", icon: Phone, group: "Ações rápidas" },
+  {
+    label: "Vida Acadêmica",
+    hint: "Calendário · Matrícula · Biblioteca",
+    to: "/vida-academica",
+    icon: GraduationCap,
+    group: "Seções",
+    keywords: "calendario matricula biblioteca tutoriais",
+  },
+  {
+    label: "Cursos",
+    hint: "Graduação · Centros · Turnos",
+    to: "/cursos",
+    icon: BookOpen,
+    group: "Seções",
+  },
+  {
+    label: "Serviços e Documentos",
+    hint: "WebGiz · Declarações · Requerimentos",
+    to: "/servicos-documentos",
+    icon: FileText,
+    group: "Seções",
+    keywords: "webgiz declaracao historico requerimento",
+  },
+  {
+    label: "Editais e Oportunidades",
+    hint: "Editais · Estágios · Bolsas",
+    to: "/editais-oportunidades",
+    icon: ClipboardList,
+    group: "Seções",
+  },
+  {
+    label: "Eventos",
+    hint: "Cultural · Acadêmico · Comunitário",
+    to: "/eventos",
+    icon: CalendarHeart,
+    group: "Seções",
+  },
+  {
+    label: "Assistência Estudantil",
+    hint: "Auxílios · RU · Saúde",
+    to: "/assistencia-estudantil",
+    icon: HeartHandshake,
+    group: "Seções",
+  },
+  {
+    label: "Movimento Estudantil e Lazer",
+    hint: "DCE · Atléticas · Reservas",
+    to: "/movimento-estudantil-lazer",
+    icon: Megaphone,
+    group: "Seções",
+  },
+  {
+    label: "Unidades e Localização",
+    hint: "Mapa · Blocos · Setores",
+    to: "/unidades-localizacao",
+    icon: MapPin,
+    group: "Seções",
+  },
+  {
+    label: "WebGiz",
+    hint: "Acessar o sistema acadêmico",
+    to: "/servicos-documentos",
+    icon: Monitor,
+    group: "Ações rápidas",
+  },
+  {
+    label: "Carteirinha estudantil",
+    hint: "Como emitir",
+    to: "/servicos-documentos",
+    icon: IdCard,
+    group: "Ações rápidas",
+  },
+  {
+    label: "Contato",
+    hint: "Fale com a Unimontes",
+    to: "/contato",
+    icon: Phone,
+    group: "Ações rápidas",
+  },
 ];
 
 export function SearchDialog({
@@ -56,23 +124,42 @@ export function SearchDialog({
     return t.includes(q.toLowerCase());
   });
 
-  useEffect(() => setActive(0), [q, open]);
-  useEffect(() => { if (!open) setQ(""); }, [open]);
+  // Digitar reinicia a seleção; fechar limpa a busca. Feito nos próprios
+  // manipuladores para evitar renders em cascata a partir de efeitos.
+  function alterarBusca(valor: string) {
+    setQ(valor);
+    setActive(0);
+  }
+
+  const fechar = useCallback(() => {
+    setQ("");
+    setActive(0);
+    onOpenChange(false);
+  }, [onOpenChange]);
 
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onOpenChange(false);
-      if (e.key === "ArrowDown") { e.preventDefault(); setActive((a) => Math.min(filtered.length - 1, a + 1)); }
-      if (e.key === "ArrowUp") { e.preventDefault(); setActive((a) => Math.max(0, a - 1)); }
+      if (e.key === "Escape") fechar();
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setActive((a) => Math.min(filtered.length - 1, a + 1));
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setActive((a) => Math.max(0, a - 1));
+      }
       if (e.key === "Enter") {
         const item = filtered[active];
-        if (item) { navigate(item.to); onOpenChange(false); }
+        if (item) {
+          navigate(item.to);
+          fechar();
+        }
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, filtered, active, navigate, onOpenChange]);
+  }, [open, filtered, active, navigate, fechar]);
 
   const groups = Array.from(new Set(filtered.map((f) => f.group)));
 
@@ -87,7 +174,7 @@ export function SearchDialog({
         >
           <motion.div
             className="absolute inset-0 bg-[#1a1a1a]/40 backdrop-blur-[2px]"
-            onClick={() => onOpenChange(false)}
+            onClick={fechar}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -107,7 +194,7 @@ export function SearchDialog({
               <input
                 autoFocus
                 value={q}
-                onChange={(e) => setQ(e.target.value)}
+                onChange={(e) => alterarBusca(e.target.value)}
                 placeholder="Busque por serviços, lugares ou processos..."
                 className="h-16 w-full bg-transparent text-[15px] text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus:outline-none"
               />
@@ -143,7 +230,10 @@ export function SearchDialog({
                           <motion.button
                             key={item.label}
                             onMouseEnter={() => setActive(idx)}
-                            onClick={() => { navigate(item.to); onOpenChange(false); }}
+                            onClick={() => {
+                              navigate(item.to);
+                              fechar();
+                            }}
                             whileTap={{ scale: 0.99 }}
                             className={`group flex w-full items-center gap-3 rounded-[4px] px-3 py-3 text-left transition-colors ${
                               isActive ? "bg-[#6E3AFF] text-white" : "hover:bg-[#fafafa]"
@@ -151,16 +241,22 @@ export function SearchDialog({
                           >
                             <div
                               className={`flex h-9 w-9 items-center justify-center rounded-[4px] border transition-colors ${
-                                isActive ? "border-white/30 bg-white/10 text-white" : "border-[#e5e5e5] text-[#1a1a1a]"
+                                isActive
+                                  ? "border-white/30 bg-white/10 text-white"
+                                  : "border-[#e5e5e5] text-[#1a1a1a]"
                               }`}
                             >
                               <Icon className="h-4 w-4" />
                             </div>
                             <div className="flex-1">
-                              <div className={`text-[14px] font-semibold ${isActive ? "text-white" : "text-[#1a1a1a]"}`}>
+                              <div
+                                className={`text-[14px] font-semibold ${isActive ? "text-white" : "text-[#1a1a1a]"}`}
+                              >
                                 {item.label}
                               </div>
-                              <div className={`text-[12px] ${isActive ? "text-white/70" : "text-[#1a1a1a]/55"}`}>
+                              <div
+                                className={`text-[12px] ${isActive ? "text-white/70" : "text-[#1a1a1a]/55"}`}
+                              >
                                 {item.hint}
                               </div>
                             </div>
@@ -182,12 +278,18 @@ export function SearchDialog({
             <div className="flex items-center justify-between border-t border-[#e5e5e5] bg-[#fafafa] px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#1a1a1a]/50">
               <div className="flex items-center gap-3">
                 <span className="flex items-center gap-1">
-                  <kbd className="rounded-[3px] border border-[#e5e5e5] bg-white px-1.5 py-0.5 font-bold">↑</kbd>
-                  <kbd className="rounded-[3px] border border-[#e5e5e5] bg-white px-1.5 py-0.5 font-bold">↓</kbd>
+                  <kbd className="rounded-[3px] border border-[#e5e5e5] bg-white px-1.5 py-0.5 font-bold">
+                    ↑
+                  </kbd>
+                  <kbd className="rounded-[3px] border border-[#e5e5e5] bg-white px-1.5 py-0.5 font-bold">
+                    ↓
+                  </kbd>
                   navegar
                 </span>
                 <span className="flex items-center gap-1">
-                  <kbd className="rounded-[3px] border border-[#e5e5e5] bg-white px-1.5 py-0.5 font-bold">↵</kbd>
+                  <kbd className="rounded-[3px] border border-[#e5e5e5] bg-white px-1.5 py-0.5 font-bold">
+                    ↵
+                  </kbd>
                   abrir
                 </span>
               </div>

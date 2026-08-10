@@ -25,19 +25,24 @@ const TIPO: Record<EventoTipo, { tag: string; hex: string }> = {
 
 export function EventoDetalhe() {
   const { slug } = useParams();
-  const [evento, setEvento] = useState<Evento | null>(null);
-  const [loading, setLoading] = useState(true);
+  // Guarda o slug junto com os dados: "carregando" passa a ser derivado,
+  // evitando setState síncrono dentro do efeito.
+  const [carregado, setCarregado] = useState<{ slug: string; evento: Evento | null } | null>(null);
+
+  const slugAtual = slug ?? "";
 
   useEffect(() => {
     let ativo = true;
-    setLoading(true);
-    getEvento(slug ?? "")
-      .then((d) => ativo && setEvento(d))
-      .finally(() => ativo && setLoading(false));
+    getEvento(slugAtual).then((d) => {
+      if (ativo) setCarregado({ slug: slugAtual, evento: d });
+    });
     return () => {
       ativo = false;
     };
-  }, [slug]);
+  }, [slugAtual]);
+
+  const loading = carregado?.slug !== slugAtual;
+  const evento = carregado?.evento ?? null;
 
   if (loading) {
     return (
@@ -176,8 +181,13 @@ export function EventoDetalhe() {
                     Sobre o evento
                   </div>
                   <p className="mt-3 text-[15px] leading-[1.6] text-[#1a1a1a]/70">
-                    As informações completas deste evento estão disponíveis na página oficial
-                    do organizador.
+                    {evento.linkOficial
+                      ? "As informações completas deste evento estão disponíveis na página oficial do organizador."
+                      : `A programação detalhada ainda não foi divulgada. Acompanhe os canais ${
+                          evento.organizador
+                            ? `d${evento.organizador.startsWith("A") ? "a" : "o"} ${evento.organizador}`
+                            : "do organizador"
+                        } para mais informações.`}
                   </p>
                   {evento.linkOficial && (
                     <a
