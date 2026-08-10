@@ -1,7 +1,30 @@
-const MESES_CURTO = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"];
+const MESES_CURTO = [
+  "JAN",
+  "FEV",
+  "MAR",
+  "ABR",
+  "MAI",
+  "JUN",
+  "JUL",
+  "AGO",
+  "SET",
+  "OUT",
+  "NOV",
+  "DEZ",
+];
 const MESES_LONGO = [
-  "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-  "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+  "janeiro",
+  "fevereiro",
+  "março",
+  "abril",
+  "maio",
+  "junho",
+  "julho",
+  "agosto",
+  "setembro",
+  "outubro",
+  "novembro",
+  "dezembro",
 ];
 
 /** Partes de uma data ISO para exibição (dia e mês abreviado) */
@@ -27,17 +50,34 @@ export function formatarPeriodo(inicio: string, fim?: string) {
   if (!fim || fim === inicio) return formatarData(inicio);
   const [, mesI, diaI] = inicio.split("-");
   const [, mesF] = fim.split("-");
-  return mesI === mesF ? `${diaI} a ${formatarData(fim)}` : `${formatarData(inicio)} a ${formatarData(fim)}`;
+  return mesI === mesF
+    ? `${diaI} a ${formatarData(fim)}`
+    : `${formatarData(inicio)} a ${formatarData(fim)}`;
 }
 
 const SEMANA = [
-  "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira",
-  "Quinta-feira", "Sexta-feira", "Sábado",
+  "Domingo",
+  "Segunda-feira",
+  "Terça-feira",
+  "Quarta-feira",
+  "Quinta-feira",
+  "Sexta-feira",
+  "Sábado",
 ];
 
 const MESES_TITULO = [
-  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro",
 ];
 
 /** "2026-08-16" → "Domingo, 16 de Agosto" */
@@ -53,7 +93,15 @@ export function mesAbreviado(iso: string) {
   return MESES_TITULO[mes - 1].slice(0, 3) + ".";
 }
 
-/** Dias até a data (negativo = passado) */
+/**
+ * Dias de calendário até a data (0 = hoje, negativo = passado).
+ *
+ * A comparação zera o horário dos dois lados: sem isso, um evento marcado para
+ * hoje consultado às 12h resultaria em 1 dia, e não em 0.
+ */
 export function diasAte(iso: string, hoje = new Date()) {
-  return Math.ceil((new Date(iso + "T23:59:59").getTime() - hoje.getTime()) / 86_400_000);
+  const [ano, mes, dia] = iso.split("-").map(Number);
+  const alvo = new Date(ano, mes - 1, dia);
+  const base = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+  return Math.round((alvo.getTime() - base.getTime()) / 86_400_000);
 }
