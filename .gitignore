@@ -18,6 +18,7 @@ coverage/
 docs/modelo-dados.md
 docs/dados-necessarios-unidades.md
 docs/roadmap.md
+docs/guia-ferramentas.md
 
 # Arquivos de ambiente (Senhas e segredos)
 .env
