@@ -82,7 +82,10 @@ const sections = [
         <PanelLinks
           intro="Acesse serviços de saúde, apoio psicológico, atendimento odontológico e grupos de apoio."
           links={[
-            { label: "Apoio Psicológico", desc: "Atendimento e acolhimento psicológico ao estudante." },
+            {
+              label: "Apoio Psicológico",
+              desc: "Atendimento e acolhimento psicológico ao estudante.",
+            },
             { label: "Atendimento Odontológico", desc: "Serviços da clínica odontológica." },
             { label: "Posto de Atendimento à Saúde", desc: "Primeiros atendimentos no campus." },
             { label: "Grupos de Apoio", desc: "Rodas de conversa e grupos temáticos." },
@@ -111,7 +114,10 @@ const sections = [
               label: "Necessidades Educacionais Específicas",
               desc: "Atendimento especializado e adaptações.",
             },
-            { label: "Recursos de Acessibilidade", desc: "Materiais, tecnologias e apoio técnico." },
+            {
+              label: "Recursos de Acessibilidade",
+              desc: "Materiais, tecnologias e apoio técnico.",
+            },
             { label: "Orientações", desc: "Como solicitar apoio e acompanhamento." },
           ]}
         />

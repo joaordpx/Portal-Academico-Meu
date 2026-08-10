@@ -120,11 +120,7 @@ const sections = [
       <div>
         <PanelLinks
           intro="Acesse formulários oficiais, modelos e anexos necessários para processos acadêmicos."
-          links={[
-            { label: "Formulários Oficiais" },
-            { label: "Modelos" },
-            { label: "Anexos" },
-          ]}
+          links={[{ label: "Formulários Oficiais" }, { label: "Modelos" }, { label: "Anexos" }]}
         />
         <PanelRelated
           links={[

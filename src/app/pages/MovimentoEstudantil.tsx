@@ -14,13 +14,7 @@ const popular = [
   { label: "Reserva de Espaços" },
 ];
 
-const tags = [
-  "DCE",
-  "centro acadêmico",
-  "esporte",
-  "reserva de quadra",
-  "centro esportivo",
-];
+const tags = ["DCE", "centro acadêmico", "esporte", "reserva de quadra", "centro esportivo"];
 
 const sections = [
   {
@@ -92,7 +86,10 @@ const sections = [
         <PanelLinks
           intro="Acesse informações sobre atividades esportivas, atléticas, lazer, programação e centro esportivo."
           links={[
-            { label: "Atividades esportivas", desc: "Modalidades e treinos abertos aos estudantes." },
+            {
+              label: "Atividades esportivas",
+              desc: "Modalidades e treinos abertos aos estudantes.",
+            },
             { label: "Lazer e programação", desc: "Agenda de atividades de convivência e lazer." },
             { label: "Centro esportivo", desc: "Estrutura esportiva e horários de uso." },
             { label: "Atléticas", desc: "Associações atléticas dos cursos." },

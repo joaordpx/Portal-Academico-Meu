@@ -21,8 +21,8 @@ export function NotFound() {
           Esse caminho não existe no Portal.
         </h1>
         <p className="mx-auto mt-4 max-w-md text-[16px] leading-[1.6] text-[#1a1a1a]/65">
-          O endereço pode ter sido alterado ou removido. Volte ao início para
-          continuar sua jornada acadêmica.
+          O endereço pode ter sido alterado ou removido. Volte ao início para continuar sua jornada
+          acadêmica.
         </p>
         <Link
           to="/"
